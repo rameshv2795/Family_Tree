@@ -267,12 +267,12 @@ public class Window extends JFrame{
                     // System.out.println("here");
                  }
                  
-
+                    //System.out.println("NOT HERE PLEASEEEEE");  
 
                  
                  
              }   
-                
+              
         });
         
     }
@@ -505,7 +505,11 @@ public class Window extends JFrame{
             
             x = me.getX();
             y = me.getY();
-            clickPerson();
+            
+            if(buttonPressed){ //so you can't add while another button active
+                clickPerson();
+            }
+            
             System.out.println("screen(X,Y) = " + x + "," + y);
         }
         
