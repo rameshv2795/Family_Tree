@@ -87,6 +87,7 @@ public class Tree {
         return depth;
     }
     
+    
     public void addChild(Person parent,Person child){
         
         int sizeArray; //Not needed
@@ -104,12 +105,10 @@ public class Tree {
             depthTracker.add(1);
         }    
         
-        
-        
         else{
             
             //sizeArray = parent.getChildren().size(); //Not needed
-            parent.getChildren().add(child);
+            parent.getChildren().add(child); //adds child under parent
             if(depth < child.getDepth()){
                 depth++;
                 depthTracker.add(1); //Adds new debth counter
@@ -119,11 +118,27 @@ public class Tree {
             
              
         }
-            
-        //System.out.println(depthTracker);
-        //depthCopy = depthTracker;
-       
+        System.out.println("DEPTH!!!! IS: " + depth);    
     }
+    
+        
+    public void deleteChild(Person current){
+        
+        if(!current.getChildren().isEmpty()){ //check if no children
+            for(int i = 0; i < current.getChildren().size(); i++){ //find person to delete
+                if(current.getParent().getChildren().get(i).getFirst() == current.getFirst() && 
+                   current.getParent().getChildren().get(i).getLast() == current.getLast()){ //check if right child
+                    
+                    current.getParent().getChildren().remove(i);
+                }
+            }
+            
+        }
+        else{
+            
+        }
+        
+    }            
     
     public Person findPerson(Person iter,String first, String last){
         

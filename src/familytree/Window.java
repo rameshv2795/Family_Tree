@@ -286,6 +286,8 @@ public class Window extends JFrame{
                    
                    resetButtons();
                    activateButton(2);
+                   
+                   
                  
              }
             
@@ -317,6 +319,26 @@ public class Window extends JFrame{
         }
         
         t.addChild(parent,new Person(fname,lname,parent.getDepth(),parent,1));
+        repaint();
+        return;       
+        
+        
+    }
+    
+        public void DrawChildDelete(String parFir,String parLas){
+
+        Person p = t.findPerson(t.getRoot(),parFir,parLas);
+        AddPopUp pop = new AddPopUp();
+                     //JOptionPane.showInputDialog(pop.names);
+                    // add(pop.names);
+      //  JOptionPane.showConfirmDialog(null, pop.names, "Deleting Child", JOptionPane.OK_CANCEL_OPTION);
+
+        
+      //  fname = pop.firstName.getText();
+     //   lname = pop.lastName.getText();
+        
+        
+        t.deleteChild(p);
         repaint();
         return;       
         
@@ -506,9 +528,10 @@ public class Window extends JFrame{
             x = me.getX();
             y = me.getY();
             
-            if(buttonPressed){ //so you can't add while another button active
+            if(buttonPressed || button2Pressed){ //so you can't add while another button active
                 clickPerson();
             }
+
             
             System.out.println("screen(X,Y) = " + x + "," + y);
         }
@@ -520,7 +543,10 @@ public class Window extends JFrame{
        //         DrawChild(coord.get(i).first,coord.get(i).last);
                 //System.out.println(coord.get(i).xClick + "=" + "x");
                 if(coord.get(i).xClick == x && coord.get(i).yClick == x ){
-                    DrawChild(coord.get(i).first,coord.get(i).last);
+                   if(buttonPressed)
+                       DrawChild(coord.get(i).first,coord.get(i).last);
+                   else if(button2Pressed)
+                       DrawChildDelete(coord.get(i).first,coord.get(i).last);
                     return;
                 }
 
@@ -540,7 +566,10 @@ public class Window extends JFrame{
                         for(int k = 0; k < 30; k++){
 System.out.println((coord.get(i).yClick +69+ k) + " == " + (y));
                             if(coord.get(i).yClick  +69+ k == y || coord.get(i).yClick  +69 - k == y  ){
-                                DrawChild(coord.get(i).first,coord.get(i).last);
+                                if(buttonPressed)
+                                    DrawChild(coord.get(i).first,coord.get(i).last);
+                                 else if(button2Pressed)
+                                    DrawChildDelete(coord.get(i).first,coord.get(i).last);                                
                                 return;
                             }
                                // return;
@@ -562,6 +591,7 @@ System.out.println((coord.get(i).yClick +69+ k) + " == " + (y));
         }
         
 
+        
     }
     
     
