@@ -49,13 +49,13 @@ public class Window extends JFrame{
     private Graphics2D draw;
     //private Container win;
     private JFrame window,popUp;
-    private JButton button,button2,saveButton,loadButton,quitButton;
-    private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed;
+    private JButton button,button2,saveButton,loadButton,quitButton,editButton;
+    private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
     private String fname,lname,pf,pl;
     private int depth,spot,people,whichButton;
     private Person p,q,r,s,sonS,sonS2,sonR,sson,x,y,z;
-    private Color lightgreen,yellow,lightOrange,grey;
+    private Color lightgreen,yellow,lightOrange,grey, darkGreen;
     private ArrayList<Integer> depthCopy,parentCopy;
     private ArrayList<XY> coord;
     
@@ -84,17 +84,19 @@ public class Window extends JFrame{
     private void initial(){
         
          //window = new JFrame("Family Tree");
-         
+         // http://paletton.com/#uid=12C0u0kllllaFw0g0qFqFg0w0aF
          depthCopy = new ArrayList<Integer> (0);
          parentCopy = new ArrayList<Integer> (0);
        //  coord = new ArrayList<Float> (0);
-         lightgreen = new Color(175,255,162);
-         yellow = new Color(255,204,0);
-         lightOrange = new Color(255,178,102);
+         lightgreen = Color.decode("#B5E196");
+         yellow = Color.decode("#85BC5E");
+         lightOrange = Color.decode("#85BC5E");
          grey = new Color(224,224,224);
+         darkGreen =  Color.decode("#468615");
          people = 1;
          button = new JButton("Add Person");
          button2 = new JButton("Delete Person");
+         editButton = new JButton("Edit Person");
          saveButton = new JButton("Save");
          loadButton = new JButton("Load");
          quitButton = new JButton("Quit");
@@ -132,11 +134,13 @@ public class Window extends JFrame{
         savePressed = false;
         loadPressed = false;
         quitPressed = false;
+        editPressed = false;
         button.setBackground(grey);
         button2.setBackground(grey);
         saveButton.setBackground(grey);
         loadButton.setBackground(grey);
         quitButton.setBackground(grey);
+        editButton.setBackground(grey);
         whichButton = 0;
         
     }
@@ -164,7 +168,11 @@ public class Window extends JFrame{
                     quitButton.setBackground(lightOrange);
                     whichButton = 5;
                     break;
-            
+            case 6: editPressed = true;
+                    editButton.setBackground(lightOrange);
+                    whichButton = 6;
+                    break;
+                    
             default: break;
         }
         
@@ -212,9 +220,9 @@ public class Window extends JFrame{
         layout.setVerticalGroup(  //setHorizontalGroup(Group group)
         
                 layout.createSequentialGroup().addComponent(button)
-                    .addComponent(button2)
+                    .addComponent(editButton) .addComponent(button2)
                     .addComponent(saveButton) .addComponent(quitButton)
-                    .addComponent(loadButton)
+                    .addComponent(loadButton) 
         
         
         );
@@ -223,7 +231,7 @@ public class Window extends JFrame{
                 /*createParallelGroup() returns new parallel group*/
             layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                    .addComponent(button).addComponent(button2)
+                    .addComponent(button) .addComponent(editButton) .addComponent(button2) 
                     .addComponent(saveButton).addComponent(loadButton)
                     .addComponent(quitButton))
                    
@@ -338,7 +346,10 @@ public class Window extends JFrame{
      //   lname = pop.lastName.getText();
         
         
-        t.deleteChild(p);
+        if(t.deleteChild(p) == 0){
+            JOptionPane.showMessageDialog(null, "Cannot delete a node with dependencies", "Person has children", ERROR_MESSAGE);
+            return;
+        }
         repaint();
         return;       
         

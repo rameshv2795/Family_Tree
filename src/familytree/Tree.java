@@ -123,7 +123,7 @@ public class Tree {
     }
     
         
-    public void deleteChild(Person current){
+    public int deleteChild(Person current){
         
         if(depth == 0){ //only root to delete
             depth--;
@@ -150,10 +150,10 @@ public class Tree {
             }
             
         }
-        else if(!current.getChildren().isEmpty()){
-            
+        else if(!current.getChildren().isEmpty()){ //ERROR: cannot delete node with children 
+            return 0;
         }
-        
+        return 1;
     }            
     
     public Person findPerson(Person iter,String first, String last){
