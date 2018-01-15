@@ -6,4 +6,5 @@ The Add and Delete functionalities seem to be working as intended. The Edit func
 
 # Screen
 ![alt text](tree2.png "Sample family tree 2")
+
 ![alt text](tree1.png "Sample family tree")
