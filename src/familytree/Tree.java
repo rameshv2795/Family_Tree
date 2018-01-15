@@ -7,6 +7,7 @@
 package familytree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -21,11 +22,10 @@ public class Tree {
     
     
     Tree(){
-         treeInit();
-        
+         treeInit(); //final method called
     }
     
-    public void treeInit(){
+    public final void treeInit(){ //could move this to constructor
         
         root = null;
         peopleNumber = 0;
@@ -99,9 +99,9 @@ public class Tree {
         
         peopleNumber++;
         
-        if(root == null){ 
+        if(root == null){ //adding very first node
             root = child;
-            depth++;
+            depth++; //-1 + 1 = 0
             depthTracker.add(1);
         }    
         
@@ -119,22 +119,38 @@ public class Tree {
              
         }
         System.out.println("DEPTH!!!! IS: " + depth);    
+        System.out.println(Arrays.toString(depthTracker.toArray()));
     }
     
         
     public void deleteChild(Person current){
         
-        if(!current.getChildren().isEmpty()){ //check if no children
-            for(int i = 0; i < current.getChildren().size(); i++){ //find person to delete
+        if(depth == 0){ //only root to delete
+            depth--;
+            depthTracker.remove(0);
+            root = null;
+        }
+        
+        
+        else if(current.getChildren().isEmpty()){ //check if no children
+            for(int i = 0; i < current.getParent().getChildren().size(); i++){ //find person to delete
                 if(current.getParent().getChildren().get(i).getFirst() == current.getFirst() && 
                    current.getParent().getChildren().get(i).getLast() == current.getLast()){ //check if right child
                     
+                    if(current.getParent().getChildren().size() > 1){ //lower depthTracker
+                        depthTracker.set(current.getDepth(),depthTracker.get(current.getDepth())-1);
+                    }
+                    else{ //lower depth and remove depthTracker
+                        depthTracker.remove(current.getDepth());
+                        depth--;
+                    }
                     current.getParent().getChildren().remove(i);
+                    
                 }
             }
             
         }
-        else{
+        else if(!current.getChildren().isEmpty()){
             
         }
         

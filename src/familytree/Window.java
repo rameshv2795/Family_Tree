@@ -301,7 +301,7 @@ public class Window extends JFrame{
     
 
     public void DrawChild(String parFir,String parLas){
-        System.out.println("HERE");
+      //  System.out.println("HERE");
 
         Person parent = t.findPerson(t.getRoot(),parFir,parLas);
         AddPopUp pop = new AddPopUp();
@@ -406,7 +406,7 @@ public class Window extends JFrame{
                 coord.get(coord.size()-1).yClick = ((785/(depth+2))*(iter.getDepth()+1))+5;
                 coord.get(coord.size()-1).first = iter.getFirst();
                 coord.get(coord.size()-1).last = iter.getLast();
-                System.out.println(coord.get(coord.size()-1).xClick + " " + coord.get(coord.size()-1).first); 
+               // System.out.println(coord.get(coord.size()-1).xClick + " " + coord.get(coord.size()-1).first); 
                 //System.out.println(coord.get(coord.size()-1).xClick);
                 
                 if(iter.getParent() != null){
@@ -444,7 +444,7 @@ public class Window extends JFrame{
                         coord.get(coord.size()-1).first = iter.getFirst();
                         coord.get(coord.size()-1).last = iter.getLast();
                         
-                        System.out.println(coord.get(coord.size()-1).xClick + " " + coord.get(coord.size()-1).first);        
+                  //      System.out.println(coord.get(coord.size()-1).xClick + " " + coord.get(coord.size()-1).first);        
 
                         if(iter.getParent() != null){
                            // g.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+11, ((785/(depth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*parentCopy.get(iter.getParent().getDepth()))+180+11, ((785/(depth+2))*(iter.getParent().getDepth()+1))+5));
@@ -533,7 +533,7 @@ public class Window extends JFrame{
             }
 
             
-            System.out.println("screen(X,Y) = " + x + "," + y);
+           // System.out.println("screen(X,Y) = " + x + "," + y);
         }
         
         public void clickPerson(){
@@ -553,18 +553,18 @@ public class Window extends JFrame{
                 for(int j = 0; j < 30; j++){
                     //System.out.println("HERE");
                     
-                    System.out.println((coord.get(i).xClick + 47 + j) + " == " + (x));
+                  //  System.out.println((coord.get(i).xClick + 47 + j) + " == " + (x));
                     if(coord.get(i).xClick  +47 + j == x || coord.get(i).xClick + 47 - j == x  ){
                         //DrawChild(coord.get(i).first,coord.get(i).last);
                         next = true;
-                        System.out.println("HERE");
+                     //   System.out.println("HERE");
                     }
                     
                     if(next == true){
                         
                       // System.out.println(coord.get(i).yClick + "=" + "y");
                         for(int k = 0; k < 30; k++){
-System.out.println((coord.get(i).yClick +69+ k) + " == " + (y));
+//System.out.println((coord.get(i).yClick +69+ k) + " == " + (y));
                             if(coord.get(i).yClick  +69+ k == y || coord.get(i).yClick  +69 - k == y  ){
                                 if(buttonPressed)
                                     DrawChild(coord.get(i).first,coord.get(i).last);
@@ -584,7 +584,7 @@ System.out.println((coord.get(i).yClick +69+ k) + " == " + (y));
             
             }
                 for (int z =0; z < coord.size(); z++){
-                System.out.println("<"+(coord.get(z).xClick+47) + "," + (coord.get(z).yClick+69)+">");
+               // System.out.println("<"+(coord.get(z).xClick+47) + "," + (coord.get(z).yClick+69)+">");
                 }
             
             
