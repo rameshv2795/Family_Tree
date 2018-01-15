@@ -5,6 +5,5 @@ Family Tree using a Tree of ArrayLists. There is no upper bound for children. Ea
 The Add and Delete functionalities seem to be working as intended. The Edit function is currently being developed. Improving the UI and adding save and load functionalities will be implemented in the future. 
 
 # Screen
-![alt text](tree1.png "Sample family tree")
 ![alt text](tree2.png "Sample family tree 2")
 
