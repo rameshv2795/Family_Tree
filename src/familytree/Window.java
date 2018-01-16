@@ -53,7 +53,7 @@ public class Window extends JFrame{
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
     private String fname,lname,pf,pl;
-    private int depth,spot,people,whichButton;
+    private int maxDepth,spot,people,whichButton;
     private Person p,q,r,s,sonS,sonS2,sonR,sson,x,y,z;
     private Color lightgreen,yellow,lightOrange,grey, darkGreen;
     private ArrayList<Integer> depthCopy,parentCopy;
@@ -188,6 +188,7 @@ public class Window extends JFrame{
         createButton();
         buttonAction();
         button2Action();
+        editAction();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Family Tree");
         
@@ -257,7 +258,7 @@ public class Window extends JFrame{
                  //System.out.println(fname);
                  //setContentPane(new addPopUp().names);
 // buttonPressed = true;
-                // System.out.println(t.getDepth());
+                // System.out.println(t.getMaxDepth());
                //  button.setBackground(lightOrange);
                  if(t.getRoot() == null){
                  /*
@@ -294,17 +295,28 @@ public class Window extends JFrame{
                    
                    resetButtons();
                    activateButton(2);
-                   
-                   
-                 
+       
              }
-            
-            
+    
         });
     
-        
-        
     }
+    
+    private void editAction(){
+        
+        editButton.addActionListener(new ActionListener() {
+            
+            @Override //
+             public void actionPerformed(ActionEvent event){
+
+                   resetButtons();
+                   activateButton(6);
+       
+             }
+    
+        });
+    
+    }    
     
     
 
@@ -326,14 +338,14 @@ public class Window extends JFrame{
             return;
         }
         
-        t.addChild(parent,new Person(fname,lname,parent.getDepth(),parent,1));
+        t.addChild(parent,new Person(fname,lname,parent.getMaxDepth(),parent,1));
         repaint();
         return;       
         
         
     }
     
-        public void DrawChildDelete(String parFir,String parLas){
+    public void DrawChildDelete(String parFir,String parLas){
 
         Person p = t.findPerson(t.getRoot(),parFir,parLas);
         AddPopUp pop = new AddPopUp();
@@ -351,10 +363,29 @@ public class Window extends JFrame{
             return;
         }
         repaint();
-        return;       
-        
-        
+        return;         
     }
+    
+    public void DrawChildEdit(String parFir,String parLas){
+
+        Person p = t.findPerson(t.getRoot(),parFir,parLas);
+        AddPopUp pop = new AddPopUp(parFir,parLas);
+
+       JOptionPane.showConfirmDialog(null, pop.names, "Edit Node", JOptionPane.OK_CANCEL_OPTION);
+
+        fname = pop.firstName.getText();
+        lname = pop.lastName.getText();
+        
+        if(t.findPerson(t.getRoot(), fname, lname) != null){ //Check if Person already exists
+            JOptionPane.showMessageDialog(null, "Person Already Exists", "Duplicate Person", ERROR_MESSAGE);
+            return;
+        }       
+        
+        t.editPerson(p, fname, lname);
+        
+        repaint();
+        return;       
+    }    
     
     
     //@Override
@@ -389,48 +420,48 @@ public class Window extends JFrame{
 
         
         /*
-        OVALS (adding 1 to depth because lowest debth is 0)
-        X Axis: (X JFrame length) / (# of nodes at certain debth + 1 * by counter for # of nodes in certain depth) ... Counter increments
-        Y Axis: (Y JFrame length / Total Tree Depth + 2) * (Depth at position + 1)
+        OVALS (adding 1 to maxDepth because lowest debth is 0)
+        X Axis: (X JFrame length) / (# of nodes at certain debth + 1 * by counter for # of nodes in certain maxDepth) ... Counter increments
+        Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at position + 1)
        
-        LINES TO PARENT (When access parent depth counter(in ArrayList) subtract 1 because it incremented before)
-        X Axis: (X JFrame length) / (# of nodes at parent debth + 1 * by counter for # of nodes in parent depth) 
-        Y Axis: (Y JFrame length / Total Tree Depth + 2) * (Depth at Parent Position plus 1)
+        LINES TO PARENT (When access parent maxDepth counter(in ArrayList) subtract 1 because it incremented before)
+        X Axis: (X JFrame length) / (# of nodes at parent debth + 1 * by counter for # of nodes in parent maxDepth) 
+        Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at Parent Position plus 1)
         
         
         
         */
-        private void PaintTree(Graphics2D g, Graphics2D l, Person iter, int depth,int iterCount){
+        private void PaintTree(Graphics2D g, Graphics2D l, Person iter, int maxDepth,int iterCount){
         
             //g.draw(new Line2D.Double(280, 0, 280, 1000));
             //g.draw(new Line2D.Double(290, 0, 280, 1000));
             if(iter.getChildren().isEmpty()){ //BASE 1
                 g.setColor(yellow);
-                g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(depth+2))*(iter.getDepth()+1))+5, 80, 80); // The 620 and 180 are related to the JFrame
-                g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(depth+2))*(iter.getDepth()+1))+5, 80, 80);
+                g.drawOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80); // The 620 and 180 are related to the JFrame
+                g.fillOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80);
                 l.setColor(Color.black);
-                l.drawString(iter.getFirst(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(depth+2))*(iter.getDepth()+1))+5+35);
-                l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(depth+2))*(iter.getDepth()+1))+5+48);
+                l.drawString(iter.getFirst(),((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+35);
+                l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+48);
                 coord.add(new XY()); //Store location of oval for mouse
                
-                coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180; //All this to keep track if node is clicked 
-                coord.get(coord.size()-1).yClick = ((785/(depth+2))*(iter.getDepth()+1))+5;
+                coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180; //All this to keep track if node is clicked 
+                coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5;
                 coord.get(coord.size()-1).first = iter.getFirst();
                 coord.get(coord.size()-1).last = iter.getLast();
                // System.out.println(coord.get(coord.size()-1).xClick + " " + coord.get(coord.size()-1).first); 
                 //System.out.println(coord.get(coord.size()-1).xClick);
                 
                 if(iter.getParent() != null){
-//                  g.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+11, ((785/(depth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*parentCopy.get(iter.getParent().getDepth()))+180+11, ((785/(depth+2))*(iter.getParent().getDepth()+1))+5));
+//                  g.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+11, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getMaxDepth())+1))*parentCopy.get(iter.getParent().getMaxDepth()))+180+11, ((785/(maxDepth+2))*(iter.getParent().getMaxDepth()+1))+5));
                     l.setColor(Color.black);
-                    l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(depth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(depth+2))*(iter.getParent().getDepth()+1))+86.5));    
-                    //parentCopy.set(iter.getParent().getDepth(),parentCopy.get(iter.getParent().getDepth()) + 1);
+                    l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+40, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getMaxDepth())+1))*((depthCopy.get(iter.getMaxDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getMaxDepth()+1))+86.5));    
+                    //parentCopy.set(iter.getParent().getMaxDepth(),parentCopy.get(iter.getParent().getMaxDepth()) + 1);
                    
                 }  
                 
-                //System.out.println(iter.getFirst() + " " + iter.getLast()+ " (Depth: " + iter.getDepth() + ")");
+                //System.out.println(iter.getFirst() + " " + iter.getLast()+ " (maxDepth: " + iter.getMaxDepth() + ")");
                 //System.out.println("EXIT");
-                depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
+                depthCopy.set(iter.getMaxDepth(),depthCopy.get(iter.getMaxDepth()) + 1);
                 //System.out.println(depthCopy);
                 //System.out.println(depthCopy); 
                 return;
@@ -442,35 +473,35 @@ public class Window extends JFrame{
                 for(int i = 0; i<iter.getChildren().size(); i++){
 
                     if(i == 0){
-                        //System.out.println(iter.getFirst() + " " + iter.getLast() + " (Depth: " + iter.getDepth() + ")");
+                        //System.out.println(iter.getFirst() + " " + iter.getLast() + " (maxDepth: " + iter.getMaxDepth() + ")");
                         g.setColor(yellow);
-                        g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(depth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
-                        g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(depth+2))*(iter.getDepth()+1))+5, 80, 80);
+                        g.drawOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80); //max y is 785 + 5
+                        g.fillOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80);
                         l.setColor(Color.black);
-                        l.drawString(iter.getFirst(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(depth+2))*(iter.getDepth()+1))+5+35);
-                        l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(depth+2))*(iter.getDepth()+1))+5+48);
+                        l.drawString(iter.getFirst(),((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+35);
+                        l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+48);
                         coord.add(new XY());
-                        coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180;
-                        coord.get(coord.size()-1).yClick = ((785/(depth+2))*(iter.getDepth()+1))+5;
+                        coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180;
+                        coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5;
                         coord.get(coord.size()-1).first = iter.getFirst();
                         coord.get(coord.size()-1).last = iter.getLast();
                         
                   //      System.out.println(coord.get(coord.size()-1).xClick + " " + coord.get(coord.size()-1).first);        
 
                         if(iter.getParent() != null){
-                           // g.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+11, ((785/(depth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*parentCopy.get(iter.getParent().getDepth()))+180+11, ((785/(depth+2))*(iter.getParent().getDepth()+1))+5));
+                           // g.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+11, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getMaxDepth())+1))*parentCopy.get(iter.getParent().getMaxDepth()))+180+11, ((785/(maxDepth+2))*(iter.getParent().getMaxDepth()+1))+5));
                             l.setColor(Color.black);
-                            l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(depth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(depth+2))*(iter.getParent().getDepth()+1))+86.5));                            
+                            l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+40, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getMaxDepth())+1))*((depthCopy.get(iter.getMaxDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getMaxDepth()+1))+86.5));                            
                                 
                         }
-                        depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
+                        depthCopy.set(iter.getMaxDepth(),depthCopy.get(iter.getMaxDepth()) + 1);
                     }
                     
-//g.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(depth+2))*(iter.getDepth()+1)), ((620/(t.getDepthTracker().get(iter.getDepth())+2))*depthCopy.get(i+1))+180,  ((785/(depth+3))*(i+1))+5));
+//g.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1)), ((620/(t.getDepthTracker().get(iter.getMaxDepth())+2))*depthCopy.get(i+1))+180,  ((785/(maxDepth+3))*(i+1))+5));
                 //  System.out.println(t.getDepthTracker());      
-                    PaintTree(g,l,iter.getChildren().get(i),depth,iterCount++); //Recursion
+                    PaintTree(g,l,iter.getChildren().get(i),maxDepth,iterCount++); //Recursion
                     
-//parentCopy.set(iter.getParent().getDepth(),parentCopy.get(iter.getParent().getDepth()) + 1);
+//parentCopy.set(iter.getParent().getMaxDepth(),parentCopy.get(iter.getParent().getMaxDepth()) + 1);
                 }
                 
             }  
@@ -507,14 +538,14 @@ public class Window extends JFrame{
             }
             
             if(t.getRoot() != null)
-                PaintTree(oval,line,t.getRoot(),t.getDepth(),0);
+                PaintTree(oval,line,t.getRoot(),t.getMaxDepth(),0);
             
             
            /*     
-             if(t.getDepth() == 0)
+             if(t.getMaxDepth() == 0)
                oval.drawOval(380, 5, 25, 25);
             
-             if(t.getDepth() == 1)
+             if(t.getMaxDepth() == 1)
                oval.drawOval(580, 5, 25, 25);
             */
 
@@ -539,7 +570,7 @@ public class Window extends JFrame{
             x = me.getX();
             y = me.getY();
             
-            if(buttonPressed || button2Pressed){ //so you can't add while another button active
+            if(buttonPressed || button2Pressed || editPressed){ //so you can't add while another button active
                 clickPerson();
             }
 
@@ -558,6 +589,8 @@ public class Window extends JFrame{
                        DrawChild(coord.get(i).first,coord.get(i).last);
                    else if(button2Pressed)
                        DrawChildDelete(coord.get(i).first,coord.get(i).last);
+                   else if(editPressed)
+                       DrawChildEdit(coord.get(i).first,coord.get(i).last);
                     return;
                 }
 
@@ -579,8 +612,10 @@ public class Window extends JFrame{
                             if(coord.get(i).yClick  +69+ k == y || coord.get(i).yClick  +69 - k == y  ){
                                 if(buttonPressed)
                                     DrawChild(coord.get(i).first,coord.get(i).last);
-                                 else if(button2Pressed)
-                                    DrawChildDelete(coord.get(i).first,coord.get(i).last);                                
+                                else if(button2Pressed)
+                                    DrawChildDelete(coord.get(i).first,coord.get(i).last);   
+                                else if(editPressed)
+                                    DrawChildEdit(coord.get(i).first,coord.get(i).last);    
                                 return;
                             }
                                // return;
@@ -628,11 +663,18 @@ public class Window extends JFrame{
             
             names.add(lastLabel);
             names.add(lastName);
-        
             //.showConfirmDialog(null, p, "Family and first name : ", JOptionPane.OK_CANCEL_OPTION);
-
-
         }
+        
+        AddPopUp(String f, String l){ //Overload for edit popup
+            names.add(firstLabel);
+            names.add(firstName);
+            this.firstName.setText(f);
+            names.add(lastLabel);
+            names.add(lastName);
+            this.lastName.setText(l);
+            //.showConfirmDialog(null, p, "Family and first name : ", JOptionPane.OK_CANCEL_OPTION);
+        }        
         
         
     }

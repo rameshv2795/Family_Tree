@@ -19,11 +19,27 @@ public class PopUp extends JFrame {
     
     
     PopUp(){
-     
         createPopUp();
         getPopUp();
     }
+    
+    PopUp(String first, String last){ //Overloading for edit popup
+        createPopUp();
+        getPopUp();
+    }
+    
+
     private void createPopUp(){
+       popUp = new JFrame(); 
+       popUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       popUp.setTitle("Pop");
+       popUp.setSize(500, 600);
+       popUp.setLocationRelativeTo(null);
+       popUp.setVisible(false);
+
+    }
+    
+    private void createPopUp(String first, String last){ //Overloading for edit popup
         
        popUp = new JFrame(); 
        popUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -67,13 +67,18 @@ public class Person {
         return lastName;
     }    
     
-    public int getDepth(){
+    public int getMaxDepth(){
         return personDepth;
     }
     
     public ArrayList<Person> getChildren(){
         return children;
     }    
+    
+    public void editName(String f, String l){
+        firstName = f;
+        lastName = l;
+    }
     
     public void addSpouse(Person sp){
         

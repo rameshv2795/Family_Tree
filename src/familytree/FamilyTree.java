@@ -21,7 +21,7 @@ public class FamilyTree {
     public static void main(String[] args) {
         // TODO code application logic here
        
-        
+       
         Tree tree = new Tree();
         
        // jim.addSpouse(sally);
@@ -46,9 +46,9 @@ public class FamilyTree {
        
      /*  alpha = new Person("Alpha", "Al", -1,null,1);
         tree.addChild(null,alpha);
-        beta = new Person("Beta", "Al", alpha.getDepth(),alpha,2);
+        beta = new Person("Beta", "Al", alpha.getMaxDepth(),alpha,2);
         tree.addChild(alpha,beta);
-        bar = new Person("Bar", "Al", alpha.getDepth(),alpha,2);
+        bar = new Person("Bar", "Al", alpha.getMaxDepth(),alpha,2);
         tree.addChild(alpha,bar);
         Person iter = tree.getRoot(); //CHANGE LATER
         tree.printTree(iter);

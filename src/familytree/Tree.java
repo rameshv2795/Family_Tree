@@ -13,9 +13,9 @@ import java.util.Arrays;
  *
  * @author Vinod
  */
-public class Tree {
+public class Tree extends BaseTree {
     
-    private int depth,peopleNumber,marriedNumber;
+    private int peopleNumber,marriedNumber;
     private Person root;
     private Person iterator;
     private ArrayList<Integer> depthTracker;
@@ -29,16 +29,16 @@ public class Tree {
         
         root = null;
         peopleNumber = 0;
-        depth = -1;
+        maxDepth = -1;
         depthTracker = new ArrayList<Integer> (0);
     }
     
-
+   
     public void printTree(Person iter){
         
         if(iter.getChildren().isEmpty()){ //BASE 1
             
-            System.out.println(iter.getFirst() + " " + iter.getLast()+ " (Depth: " + iter.getDepth() + ")");
+            System.out.println(iter.getFirst() + " " + iter.getLast()+ " (maxDepth: " + iter.getMaxDepth() + ")");
             //System.out.println("EXIT");
             return;
         }    
@@ -49,7 +49,7 @@ public class Tree {
             for(int i = 0; i<iter.getChildren().size(); i++){
                 
                 if(i == 0){
-                    System.out.println(iter.getFirst() + " " + iter.getLast() + " (Depth: " + iter.getDepth() + ")");
+                    System.out.println(iter.getFirst() + " " + iter.getLast() + " (maxDepth: " + iter.getMaxDepth() + ")");
                     
                 }
                 
@@ -83,8 +83,8 @@ public class Tree {
         
     }
     
-    public int getDepth(){
-        return depth;
+    public int getMaxDepth(){
+        return maxDepth;
     }
     
     
@@ -101,7 +101,7 @@ public class Tree {
         
         if(root == null){ //adding very first node
             root = child;
-            depth++; //-1 + 1 = 0
+            maxDepth++; //-1 + 1 = 0
             depthTracker.add(1);
         }    
         
@@ -109,24 +109,24 @@ public class Tree {
             
             //sizeArray = parent.getChildren().size(); //Not needed
             parent.getChildren().add(child); //adds child under parent
-            if(depth < child.getDepth()){
-                depth++;
+            if(maxDepth < child.getMaxDepth()){
+                maxDepth++;
                 depthTracker.add(1); //Adds new debth counter
             }//System.out.println(parent.getChildren().size());
             else
-                depthTracker.set(child.getDepth(),depthTracker.get(child.getDepth())+1); //Increments certain debth
+                depthTracker.set(child.getMaxDepth(),depthTracker.get(child.getMaxDepth())+1); //Increments certain debth
             
              
         }
-        System.out.println("DEPTH!!!! IS: " + depth);    
+        System.out.println("maxDepth!!!! IS: " + maxDepth);    
         System.out.println(Arrays.toString(depthTracker.toArray()));
     }
     
         
     public int deleteChild(Person current){
         
-        if(depth == 0){ //only root to delete
-            depth--;
+        if(maxDepth == 0){ //only root to delete
+            maxDepth--;
             depthTracker.remove(0);
             root = null;
         }
@@ -138,11 +138,11 @@ public class Tree {
                    current.getParent().getChildren().get(i).getLast() == current.getLast()){ //check if right child
                     
                     if(current.getParent().getChildren().size() > 1){ //lower depthTracker
-                        depthTracker.set(current.getDepth(),depthTracker.get(current.getDepth())-1);
+                        depthTracker.set(current.getMaxDepth(),depthTracker.get(current.getMaxDepth())-1);
                     }
-                    else{ //lower depth and remove depthTracker
-                        depthTracker.remove(current.getDepth());
-                        depth--;
+                    else{ //lower maxDepth and remove depthTracker
+                        depthTracker.remove(current.getMaxDepth());
+                        maxDepth--;
                     }
                     current.getParent().getChildren().remove(i);
                     
@@ -174,5 +174,8 @@ public class Tree {
         return p; //Return null if not found
     }
     
+    void editPerson(Person iter,String first, String last){  
+       iter.editName(first, last);
+    }    
     
 }

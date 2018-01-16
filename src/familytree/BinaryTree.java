@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package familytree;
 
 /**
  *
  * @author Vinod
  */
-public class DrawTree  {
+public class BinaryTree extends BaseTree {
     
 }
