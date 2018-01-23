@@ -6,6 +6,8 @@
 
 package familytree;
 
+import java.io.File;
+
 
 
 
@@ -20,21 +22,10 @@ public class FamilyTree {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       
-       
-        Tree tree = new Tree();
-        
-       // jim.addSpouse(sally);
-        //sally.addSpouse(jim);
-        //Ui Window = new Ui(),win2 = new Ui();
-        //Window.setVisible(true);
-        //win2.setVisible(true);
-        Window frame = new Window(tree);
-       // frame.setVisible(true);
-       // jim.addChild(sally);
-        treePrompts(tree,frame);
 
-        
+        Tree tree = new Tree();
+        Window frame = new Window(tree);
+        treePrompts(tree,frame);      
     }
     
     public static void treePrompts(Tree tree,Window frame){
@@ -64,6 +55,7 @@ public class FamilyTree {
        */ 
     }
     
+
 
     
    

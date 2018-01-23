@@ -5,6 +5,8 @@
  */
 package familytree;
 
+import java.io.File;
+
 /**
  *
  * @author Vinod
@@ -12,4 +14,5 @@ package familytree;
 abstract class BaseTree {
    protected int maxDepth, nodesCount;
    protected String name;
+   protected  File tempStorage;
 }

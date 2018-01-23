@@ -6,6 +6,7 @@
 
 package familytree;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,6 +24,7 @@ public class Tree extends BaseTree {
     
     Tree(){
          treeInit(); //final method called
+         tempStorage = new File("C:/Users/Public/Documents/testtree.txt");
     }
     
     public final void treeInit(){ //could move this to constructor
