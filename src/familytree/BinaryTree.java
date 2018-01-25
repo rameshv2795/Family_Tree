@@ -12,8 +12,8 @@ package familytree;
 public class BinaryTree extends BaseTree {
     
     @Override
-    public void loadTree(){
-        
+    public String loadTree(String fileName){
+        return "load";
     }
     @Override
     public void saveTree(){

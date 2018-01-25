@@ -6,9 +6,11 @@
 
 package familytree;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -181,9 +183,9 @@ public class Tree extends BaseTree {
     }    
     
     @Override
-    public void loadTree(){
-        System.out.println("LOADING");
-        
+    public String loadTree(String fileName){
+        System.out.println("File chosen: " + fileName);
+        return fileName;
     }
     @Override
     public void saveTree(){

@@ -26,15 +26,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import java.util.ArrayList;
 import javax.swing.Box;
+import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -344,10 +347,21 @@ public class Window extends JFrame{
             
             @Override //
              public void actionPerformed(ActionEvent event){
-
+                   Component c = (Component) event.getSource();
                    resetButtons();
                    activateButton(4);
-                   t.loadTree();
+                   /*
+                   Source for below code:
+                   https://docs.oracle.com/javase/6/docs/api/javax/swing/JFileChooser.html
+                   */
+                   JFileChooser chooser = new JFileChooser();
+                   int returnVal = chooser.showOpenDialog(c.getParent());
+                   if(returnVal == JFileChooser.APPROVE_OPTION) {
+                     //  System.out.println("You chose to open this file: " +
+                     //       chooser.getSelectedFile().getName());
+                       t.loadTree(chooser.getSelectedFile().getName());
+                   }
+                   
 
              }
     
