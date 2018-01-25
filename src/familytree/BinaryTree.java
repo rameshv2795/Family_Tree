@@ -11,4 +11,12 @@ package familytree;
  */
 public class BinaryTree extends BaseTree {
     
+    @Override
+    public void loadTree(){
+        
+    }
+    @Override
+    public void saveTree(){
+        
+    }
 }

@@ -15,4 +15,9 @@ abstract class BaseTree {
    protected int maxDepth, nodesCount;
    protected String name;
    protected  File tempStorage;
+   
+   protected abstract void loadTree();
+   protected abstract void saveTree();
+       
+
 }

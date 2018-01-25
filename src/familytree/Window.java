@@ -190,6 +190,8 @@ public class Window extends JFrame{
         button2Action();
         editAction();
         quitAction();
+        loadAction();
+        //saveAction();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Family Tree");
         
@@ -319,7 +321,7 @@ public class Window extends JFrame{
     
     }    
     
-        private void quitAction(){
+    private void quitAction(){
         
         quitButton.addActionListener(new ActionListener() {
             
@@ -329,12 +331,29 @@ public class Window extends JFrame{
                    resetButtons();
                    activateButton(5);
                    System.exit(0);
-       
+
              }
     
         });
     
     }    
+        
+    private void loadAction(){
+        
+        loadButton.addActionListener(new ActionListener() {
+            
+            @Override //
+             public void actionPerformed(ActionEvent event){
+
+                   resetButtons();
+                   activateButton(4);
+                   t.loadTree();
+
+             }
+    
+        });
+    
+    }        
     
 
     public void DrawChild(String parFir,String parLas){
