@@ -7,7 +7,9 @@
 package familytree;
 
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JFileChooser;
@@ -183,8 +185,54 @@ public class Tree extends BaseTree {
     }    
     
     @Override
-    public String loadTree(String fileName){
+    public String loadTree(String fileName) throws Exception{
         System.out.println("File chosen: " + fileName);
+        tempStorage = new File(fileName);
+        BufferedReader in = new BufferedReader(new FileReader(tempStorage));
+        
+        ArrayList<String> holder = new ArrayList<String> (0);
+        String st;
+        /*
+        Source:
+        https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
+        */
+        Boolean isRoot = true, isFirstGroup = true;
+        String parentHolderFirst = "",parentHolderLast = "";
+        while ((st = in.readLine()) != null){ 
+            
+            if(!st.trim().isEmpty()){ //trim removes leading and trailing space
+                isFirstGroup = true;
+            }            
+            //holder.add(st.split(" "));
+            String firstNameHolder = "", lastNameHolder = "", tempNameHolder = "";
+            for(int i = 0; i < st.length(); i++){ //read string char by char
+                if(st.charAt(i) == '|'){
+                    firstNameHolder = tempNameHolder; 
+                    tempNameHolder = "";
+                }
+                tempNameHolder = tempNameHolder + st.charAt(i);
+            }
+            lastNameHolder = tempNameHolder;
+            if(isRoot){
+                addChild(null,new Person(firstNameHolder,lastNameHolder,0,null,1));
+                isRoot = false;
+                parentHolderFirst = firstNameHolder;
+                parentHolderLast = lastNameHolder;
+                break;
+            }
+            else if(!isFirstGroup){
+                Person pHolder = findPerson(root,parentHolderFirst,parentHolderLast);
+                addChild(pHolder,
+                        new Person(firstNameHolder,lastNameHolder,pHolder.getMaxDepth(),pHolder,1));
+            }
+            else{
+                parentHolderFirst = firstNameHolder;
+                parentHolderLast = lastNameHolder;                
+            }
+            isFirstGroup = false;
+
+        }    
+        
         return fileName;
     }
     @Override

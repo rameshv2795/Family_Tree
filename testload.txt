@@ -1,6 +1,6 @@
-Jason Kidd
-larry right
-sarah right
+Jason|Kidd
+larry|right
+sarah|right
 
-sarah right
-grandkid
+sarah|right
+grandkid|

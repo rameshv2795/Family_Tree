@@ -16,7 +16,7 @@ abstract class BaseTree {
    protected String name;
    protected  File tempStorage;
    
-   protected abstract String loadTree(String fileName);
+   protected abstract String loadTree (String fileName) throws Exception;
    protected abstract void saveTree();
        
 

@@ -32,6 +32,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -357,16 +359,21 @@ public class Window extends JFrame{
                    JFileChooser chooser = new JFileChooser();
                    int returnVal = chooser.showOpenDialog(c.getParent());
                    if(returnVal == JFileChooser.APPROVE_OPTION) {
-                     //  System.out.println("You chose to open this file: " +
-                     //       chooser.getSelectedFile().getName());
-                       t.loadTree(chooser.getSelectedFile().getName());
+                       try {
+                           //  System.out.println("You chose to open this file: " +
+                           //       chooser.getSelectedFile().getName());
+                           t.loadTree(chooser.getSelectedFile().getAbsolutePath());
+                       } catch (Exception ex) {
+                           Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
+                       }
                    }
                    
-
+            // repaint();
+             return;
              }
-    
+             
         });
-    
+      
     }        
     
 
