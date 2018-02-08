@@ -368,7 +368,7 @@ public class Window extends JFrame{
                        }
                    }
                    
-            // repaint();
+             repaint();
              return;
              }
              

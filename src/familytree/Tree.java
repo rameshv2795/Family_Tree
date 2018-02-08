@@ -198,41 +198,55 @@ public class Tree extends BaseTree {
         */
         Boolean isRoot = true, isFirstGroup = true;
         String parentHolderFirst = "",parentHolderLast = "";
+        
         while ((st = in.readLine()) != null){ 
-            
-            if(!st.trim().isEmpty()){ //trim removes leading and trailing space
+           //System.out.println("AM I HERE???");
+            if(st.trim().isEmpty()){ //trim removes leading and trailing space
+               System.out.println("BLANK?");
                 isFirstGroup = true;
-            }            
-            //holder.add(st.split(" "));
-            String firstNameHolder = "", lastNameHolder = "", tempNameHolder = "";
-            for(int i = 0; i < st.length(); i++){ //read string char by char
-                if(st.charAt(i) == '|'){
-                    firstNameHolder = tempNameHolder; 
-                    tempNameHolder = "";
-                }
-                tempNameHolder = tempNameHolder + st.charAt(i);
-            }
-            lastNameHolder = tempNameHolder;
-            if(isRoot){
-                addChild(null,new Person(firstNameHolder,lastNameHolder,0,null,1));
-                isRoot = false;
-                parentHolderFirst = firstNameHolder;
-                parentHolderLast = lastNameHolder;
-                break;
-            }
-            else if(!isFirstGroup){
-                Person pHolder = findPerson(root,parentHolderFirst,parentHolderLast);
-                addChild(pHolder,
-                        new Person(firstNameHolder,lastNameHolder,pHolder.getMaxDepth(),pHolder,1));
             }
             else{
-                parentHolderFirst = firstNameHolder;
-                parentHolderLast = lastNameHolder;                
-            }
-            isFirstGroup = false;
+                //holder.add(st.split(" "));
+                String firstNameHolder = "", lastNameHolder = "", tempNameHolder = "";
+                for(int i = 0; i < st.length(); i++){ //read string char by char
+                    if(st.charAt(i) == '|'){
+                        firstNameHolder = tempNameHolder; 
+                        tempNameHolder = "";
+                    }
+                    tempNameHolder = tempNameHolder + st.charAt(i);
+                }
+                lastNameHolder = tempNameHolder;
+                if(isRoot){
+                    addChild(null,new Person(firstNameHolder,lastNameHolder,0,null,1));
+                    isRoot = false;
+                    parentHolderFirst = firstNameHolder;
+                    parentHolderLast = lastNameHolder;
 
+                   // System.out.println("ROOT WORKED");
+                }
+                else if(!isFirstGroup){
+                    Person pHolder = findPerson(root,parentHolderFirst,parentHolderLast);
+                    if(pHolder == null){
+                        System.out.println("THIS IS NULL");
+                        System.out.println(parentHolderFirst);
+                        System.out.println(parentHolderLast);
+
+                    }    
+                    addChild(pHolder,
+                            new Person(firstNameHolder,lastNameHolder,pHolder.getMaxDepth(),pHolder,1));
+                }
+                else if (isFirstGroup){
+
+                    parentHolderFirst = firstNameHolder;
+                    parentHolderLast = lastNameHolder;                
+                }
+                isFirstGroup = false;
+                        System.out.println(firstNameHolder);
+                        System.out.println(lastNameHolder);
+                        
+            }        
         }    
-        
+      // printTree(root);
         return fileName;
     }
     @Override
