@@ -19,4 +19,8 @@ public class BinaryTree extends BaseTree {
     public void saveTree(){
         
     }
+    @Override
+    public int nodeCount(int count){
+        return 0;
+    }    
 }

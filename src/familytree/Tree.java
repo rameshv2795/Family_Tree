@@ -43,32 +43,26 @@ public class Tree extends BaseTree {
     public void printTree(Person iter){
         
         if(iter.getChildren().isEmpty()){ //BASE 1
-            
             System.out.println(iter.getFirst() + " " + iter.getLast()+ " (maxDepth: " + iter.getMaxDepth() + ")");
             //System.out.println("EXIT");
             return;
         }    
-        
-        else{
-            
+        else{ 
             System.out.println("HERE");
-            for(int i = 0; i<iter.getChildren().size(); i++){
-                
+            for(int i = 0; i<iter.getChildren().size(); i++){      
                 if(i == 0){
-                    System.out.println(iter.getFirst() + " " + iter.getLast() + " (maxDepth: " + iter.getMaxDepth() + ")");
-                    
-                }
-                
-                printTree(iter.getChildren().get(i)); //Recursion
-                
-                
-            }
-            
+                    System.out.println(iter.getFirst() + " " + iter.getLast() + " (maxDepth: " + iter.getMaxDepth() + ")");       
+                }           
+                printTree(iter.getChildren().get(i)); //Recursion        
+            }         
         }
-           
-        
-        
-    }    
+     
+    }   
+    
+    @Override
+    public int nodeCount(int count){
+        return 0;
+    }
     
     public Person getRoot(){
 
@@ -213,7 +207,9 @@ public class Tree extends BaseTree {
                         firstNameHolder = tempNameHolder; 
                         tempNameHolder = "";
                     }
-                    tempNameHolder = tempNameHolder + st.charAt(i);
+                    else{
+                        tempNameHolder = tempNameHolder + st.charAt(i);
+                    }
                 }
                 lastNameHolder = tempNameHolder;
                 if(isRoot){
@@ -247,6 +243,7 @@ public class Tree extends BaseTree {
             }        
         }    
       // printTree(root);
+       System.out.println(findPerson(root,"Jason","Kidd").getChildrenCount());
         return fileName;
     }
     @Override

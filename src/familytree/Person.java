@@ -73,7 +73,11 @@ public class Person {
     
     public ArrayList<Person> getChildren(){
         return children;
-    }    
+    }  
+    
+    public int getChildrenCount(){
+        return children.size();
+    }
     
     public void editName(String f, String l){
         firstName = f;
