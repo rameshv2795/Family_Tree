@@ -19,6 +19,4 @@ abstract class BaseTree {
    protected abstract String loadTree (String fileName) throws Exception;
    protected abstract void saveTree();
    protected abstract int nodeCount(int count);
-       
-
 }

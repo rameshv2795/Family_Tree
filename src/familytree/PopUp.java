@@ -15,9 +15,7 @@ import javax.swing.JFrame;
 public class PopUp extends JFrame {
     
     private JFrame popUp;
-    
-    
-    
+   
     PopUp(){
         createPopUp();
         getPopUp();
@@ -28,7 +26,6 @@ public class PopUp extends JFrame {
         getPopUp();
     }
     
-
     private void createPopUp(){
        popUp = new JFrame(); 
        popUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,9 +33,7 @@ public class PopUp extends JFrame {
        popUp.setSize(500, 600);
        popUp.setLocationRelativeTo(null);
        popUp.setVisible(false);
-
     }
-    
     private void createPopUp(String first, String last){ //Overloading for edit popup
         
        popUp = new JFrame(); 
@@ -47,8 +42,7 @@ public class PopUp extends JFrame {
        popUp.setSize(500, 600);
        popUp.setLocationRelativeTo(null);
        popUp.setVisible(false);
-        
-        
+             
     }
     
     public JFrame getPopUp(){

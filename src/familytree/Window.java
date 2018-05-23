@@ -52,7 +52,6 @@ public class Window extends JFrame{
     private Tree t;
     private JLabel label;
     private Graphics2D draw;
-    //private Container win;
     private JFrame window,popUp;
     private JButton button,button2,saveButton,loadButton,quitButton,editButton;
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
@@ -63,58 +62,39 @@ public class Window extends JFrame{
     private Color lightgreen,yellow,lightOrange,grey, darkGreen;
     private ArrayList<Integer> depthCopy,parentCopy;
     private ArrayList<XY> coord;
-    
     private Font border;
-  //  MouseClick e;
-    Window(Tree tree){ //Constructor
+    
+    Window(Tree tree){ 
         t = tree;
-        initial();      
-       
+        initial();          
         createWindow();
-
         setVisible(true);
-        
-         //combinePanel();
-        
-        
-      //  setVisible(true);
-       // createButton();
-        //actionAddButton();
- 
-  
-        
-        
     }
     
     private void initial(){
+        // http://paletton.com/#uid=12C0u0kllllaFw0g0qFqFg0w0aF
+        depthCopy = new ArrayList<Integer> (0);
+        parentCopy = new ArrayList<Integer> (0);
+        lightgreen = Color.decode("#B5E196");
+        yellow = Color.decode("#85BC5E");
+        lightOrange = Color.decode("#85BC5E");
+        grey = new Color(224,224,224);
+        darkGreen =  Color.decode("#468615");
+        people = 1;
+        button = new JButton("Add Person");
+        button2 = new JButton("Delete Person");
+        editButton = new JButton("Edit Person");
+        saveButton = new JButton("Save");
+        loadButton = new JButton("Load");
+        quitButton = new JButton("Quit");
+        resetButtons();
+        coord = new ArrayList<XY> (0);
+        j = new JOptionPane();
+        label = new JLabel();
+        design = new JPanel();
+        paint = new Painting();
         
-         //window = new JFrame("Family Tree");
-         // http://paletton.com/#uid=12C0u0kllllaFw0g0qFqFg0w0aF
-         depthCopy = new ArrayList<Integer> (0);
-         parentCopy = new ArrayList<Integer> (0);
-       //  coord = new ArrayList<Float> (0);
-         lightgreen = Color.decode("#B5E196");
-         yellow = Color.decode("#85BC5E");
-         lightOrange = Color.decode("#85BC5E");
-         grey = new Color(224,224,224);
-         darkGreen =  Color.decode("#468615");
-         people = 1;
-         button = new JButton("Add Person");
-         button2 = new JButton("Delete Person");
-         editButton = new JButton("Edit Person");
-         saveButton = new JButton("Save");
-         loadButton = new JButton("Load");
-         quitButton = new JButton("Quit");
-         resetButtons();
-         coord = new ArrayList<XY> (0);
-         //XY c = new XY();
-         
-         j = new JOptionPane();
-         
-         //win = getContentPane();
-         label = new JLabel();
-         design = new JPanel();
-         paint = new Painting();
+        /*Test data*/
         p = new Person("Jason","Kidd",-1,null,1);
         q = new Person("Jack","Kidd",0,p,1);
         r = new Person("Sarah","Kidd",1,q,1);
@@ -127,7 +107,6 @@ public class Window extends JFrame{
         y=new Person("dsdfdd","sdf",2,s,2);
         z=new Person("dsdfdd","sdf",2,s,2);
     }
-    
 
     public JButton getButton(){
         return button;
@@ -146,13 +125,11 @@ public class Window extends JFrame{
         loadButton.setBackground(grey);
         quitButton.setBackground(grey);
         editButton.setBackground(grey);
-        whichButton = 0;
-        
+        whichButton = 0;       
     }
-    public void activateButton(int x){
-        
+    
+    public void activateButton(int x){    
         switch(x){
-            
             case 1: buttonPressed = true;
                     button.setBackground(lightOrange);
                     whichButton = 1;
@@ -176,17 +153,13 @@ public class Window extends JFrame{
             case 6: editPressed = true;
                     editButton.setBackground(lightOrange);
                     whichButton = 6;
-                    break;
-                    
+                    break;    
             default: break;
         }
         
         
     }
     
-
- 
-
     private void createWindow(){
         //super.add(new Painting());
         setContentPane(paint);
@@ -199,19 +172,10 @@ public class Window extends JFrame{
         //saveAction();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Family Tree");
-        
-        
         getContentPane().add(label, BorderLayout.CENTER);
         setSize(800, 800);
         setLocationRelativeTo(null);
         addMouseListener(new MouseClick());
-        //
-                
-        
-    
-       // win.setLayout(new GridLayout(1,1));
-       
-         //Adds paint to container
     }
    
     private void createButton(){ //GROUPLAYOUT MANAGER

@@ -42,9 +42,6 @@ public class Person {
         maxKids = false;
         children = new ArrayList<Person> (0);
         personDepth = parentDepth + 1;
-        
-       // children.add(null);
-        
     }
     
     public int getRowNumber(){
@@ -86,15 +83,10 @@ public class Person {
     
     public void addSpouse(Person sp){
         
-        if(spouse != null){
-           
+        if(spouse != null){   
            System.out.println("Error: Person Already Has Spouse");
            return;
-        
         }
-        
         spouse = sp;
-        
     }
-
 }

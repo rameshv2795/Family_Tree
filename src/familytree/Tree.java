@@ -88,15 +88,9 @@ public class Tree extends BaseTree {
     }
     
     
-    public void addChild(Person parent,Person child){
-        
+    public void addChild(Person parent,Person child){       
         int sizeArray; //Not needed
-       /* if(children.get(0) == null){
-        
-            System.out.println("IT IS NULL");
-        
-        }*/
-        
+       
         peopleNumber++;
         
         if(root == null){ //adding very first node
@@ -104,10 +98,7 @@ public class Tree extends BaseTree {
             maxDepth++; //-1 + 1 = 0
             depthTracker.add(1);
         }    
-        
         else{
-            
-            //sizeArray = parent.getChildren().size(); //Not needed
             parent.getChildren().add(child); //adds child under parent
             if(maxDepth < child.getMaxDepth()){
                 maxDepth++;
@@ -115,14 +106,11 @@ public class Tree extends BaseTree {
             }//System.out.println(parent.getChildren().size());
             else
                 depthTracker.set(child.getMaxDepth(),depthTracker.get(child.getMaxDepth())+1); //Increments certain debth
-            
-             
         }
         System.out.println("maxDepth!!!! IS: " + maxDepth);    
         System.out.println(Arrays.toString(depthTracker.toArray()));
     }
-    
-        
+       
     public int deleteChild(Person current){
         
         if(maxDepth == 0){ //only root to delete
@@ -130,8 +118,6 @@ public class Tree extends BaseTree {
             depthTracker.remove(0);
             root = null;
         }
-        
-        
         else if(current.getChildren().isEmpty()){ //check if no children
             for(int i = 0; i < current.getParent().getChildren().size(); i++){ //find person to delete
                 if(current.getParent().getChildren().get(i).getFirst() == current.getFirst() && 
@@ -144,8 +130,7 @@ public class Tree extends BaseTree {
                         depthTracker.remove(current.getMaxDepth());
                         maxDepth--;
                     }
-                    current.getParent().getChildren().remove(i);
-                    
+                    current.getParent().getChildren().remove(i);  
                 }
             }
             
@@ -162,18 +147,14 @@ public class Tree extends BaseTree {
             return iter;
         }
         
-        //ArrayList<Person> children = iter.getChildren();
         Person p = null;
         
-        for(int i = 0; p == null && i < iter.getChildren().size(); i++ ){
-            
-            
+        for(int i = 0; p == null && i < iter.getChildren().size(); i++ ){      
             p = findPerson(iter.getChildren().get(i),first,last);
-
         }
         return p; //Return null if not found
     }
-    
+   
     void editPerson(Person iter,String first, String last){  
        iter.editName(first, last);
     }    
@@ -218,7 +199,6 @@ public class Tree extends BaseTree {
                     parentHolderFirst = firstNameHolder;
                     parentHolderLast = lastNameHolder;
 
-                   // System.out.println("ROOT WORKED");
                 }
                 else if(!isFirstGroup){
                     Person pHolder = findPerson(root,parentHolderFirst,parentHolderLast);
@@ -226,13 +206,11 @@ public class Tree extends BaseTree {
                         System.out.println("THIS IS NULL");
                         System.out.println(parentHolderFirst);
                         System.out.println(parentHolderLast);
-
                     }    
                     addChild(pHolder,
                             new Person(firstNameHolder,lastNameHolder,pHolder.getMaxDepth(),pHolder,1));
                 }
                 else if (isFirstGroup){
-
                     parentHolderFirst = firstNameHolder;
                     parentHolderLast = lastNameHolder;                
                 }
@@ -249,6 +227,5 @@ public class Tree extends BaseTree {
     @Override
     public void saveTree(){
         
-    }
-    
+    }   
 }
