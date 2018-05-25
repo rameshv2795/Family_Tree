@@ -64,8 +64,8 @@ public class Window extends JFrame{
     private ArrayList<XY> coord;
     private Font border;
     
-    Window(Tree tree){ 
-        t = tree;
+    Window(BaseTree tree){ 
+        t = (Tree) tree;
         initial();          
         createWindow();
         setVisible(true);
