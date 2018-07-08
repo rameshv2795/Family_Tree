@@ -27,7 +27,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -63,12 +65,16 @@ public class Window extends JFrame{
     private ArrayList<Integer> depthCopy,parentCopy;
     private ArrayList<XY> coord;
     private Font border;
+    private Dimension screenSize;
     
     Window(BaseTree tree){ 
         t = (Tree) tree;
         initial();          
         createWindow();
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds(0,0,screenSize.width/2, screenSize.height);
         setVisible(true);
+       
     }
     
     private void initial(){
@@ -87,6 +93,7 @@ public class Window extends JFrame{
         saveButton = new JButton("Save");
         loadButton = new JButton("Load");
         quitButton = new JButton("Quit");
+        button.setPreferredSize(new Dimension(40, 40));
         resetButtons();
         coord = new ArrayList<XY> (0);
         j = new JOptionPane();
@@ -428,7 +435,7 @@ public class Window extends JFrame{
             Graphics2D divider = (Graphics2D) g; //casting object
             Graphics2D line = (Graphics2D) g;
 
-            divider.draw(new Line2D.Double(180, 0, 180, 1000));
+            divider.draw(new Line2D.Double(screenSize.width/9, 0, screenSize.width/9, screenSize.height));
             depthCopy = new ArrayList<Integer> (0);
             parentCopy = new ArrayList<Integer> (0);
             coord = new ArrayList<XY> (0);

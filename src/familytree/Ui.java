@@ -31,7 +31,7 @@ public class Ui extends JFrame {
     
     private void createWindow(){
         setTitle("Family Tree");
-        setSize(500, 500);
+        setSize(900, 500);
         setLocationRelativeTo(null); //Centers Window
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

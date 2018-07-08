@@ -18,6 +18,11 @@ public class FamilyTree {
         if(selectedTree == "Family Tree"){
             treeType = new Tree();
             Window frame = new Window(treeType);  
+            //frame.setSize(2000,2000);
+        }
+        else if(selectedTree == "Binary Tree"){
+            treeType = new BinaryTree();
+            //Window2 frame = new Window2(treeType);
         }
     }
 

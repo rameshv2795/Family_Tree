@@ -9,7 +9,8 @@ package familytree;
  *
  * @author Vinod
  */
-public class BinaryTree extends BaseTree {
+public class BinaryTree extends BaseTree{
+    int nodes;
     
     @Override
     public String loadTree(String fileName){
@@ -23,4 +24,5 @@ public class BinaryTree extends BaseTree {
     public int nodeCount(int count){
         return 0;
     }    
+    //public 
 }
