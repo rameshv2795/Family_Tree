@@ -51,7 +51,7 @@ public class Window extends JFrame{
     
     private JPanel design;
     private Painting paint;
-    private Tree t;
+    private FamilyTree t;
     private JLabel label;
     private Graphics2D draw;
     private JFrame window,popUp;
@@ -68,13 +68,12 @@ public class Window extends JFrame{
     private Dimension screenSize;
     
     Window(BaseTree tree){ 
-        t = (Tree) tree;
+        t = (FamilyTree) tree;
         initial();          
         createWindow();
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(0,0,screenSize.width/2, screenSize.height);
         setVisible(true);
-       
     }
     
     private void initial(){
