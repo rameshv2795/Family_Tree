@@ -72,7 +72,7 @@ public class Window extends JFrame{
         initial();          
         createWindow();
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(0,0,screenSize.width/2, screenSize.height);
+        //setBounds(0,0,screenSize.width/2, screenSize.height);
         setVisible(true);
     }
     
