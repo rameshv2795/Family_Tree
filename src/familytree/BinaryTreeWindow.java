@@ -58,7 +58,7 @@ public class BinaryTreeWindow extends JFrame{
     private JButton button,button2,saveButton,loadButton,quitButton,editButton;
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
-    private String fname,lname,pf,pl;
+    private String fname,lname,pf,pl, in_val;
     private int maxDepth,spot,people,whichButton;
     private Person p,q,r,s,sonS,sonS2,sonR,sson,x,y,z;
     private Color lightgreen,yellow,lightOrange,grey, darkGreen;
@@ -213,17 +213,15 @@ public class BinaryTreeWindow extends JFrame{
             public void actionPerformed(ActionEvent event){ //Want own action preformed
 
                 if(whichButton == 1){
-                    JOptionPane.showMessageDialog(null, "Button Already Activated. Click On A Node To Add A New Person", "Button Already Active", INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Button Already Activated. Click On A Node To Add A New Node", "Button Already Active", INFORMATION_MESSAGE);
                 }
                 resetButtons();
                 activateButton(1);
-                if(1 == 1){
-               // if(t.getRoot() == null){
+                if(t.getRoot() == null){
                     AddPopUp pop = new AddPopUp();
-                    JOptionPane.showConfirmDialog(null, pop.names, "Adding First Person", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showConfirmDialog(null, pop.numbers, "Adding First Node", JOptionPane.OK_CANCEL_OPTION);
 
-                    fname = pop.firstName.getText();
-                    lname = pop.lastName.getText();
+                    in_val = pop.input_val.getText();
                    // t.addNode(1);
                     repaint();
                     
@@ -303,6 +301,7 @@ public class BinaryTreeWindow extends JFrame{
     }        
     
     public void DrawChild(String parFir,String parLas){
+        System.out.println("DRAWING CHILD");
       //  System.out.println("HERE");
       /*  Person parent = t.findNode(t.getRoot(),parFir,parLas);
         AddPopUp pop = new AddPopUp();
@@ -510,28 +509,19 @@ public class BinaryTreeWindow extends JFrame{
     }    
     
     public class AddPopUp{
-        JPanel names = new JPanel();
-        JTextField firstName = new JTextField(10);
-        JTextField lastName = new JTextField(10);
-        JLabel firstLabel = new JLabel("First Name");
-        JLabel lastLabel = new JLabel("Last Name");
+        JPanel numbers = new JPanel();
+        JTextField input_val = new JTextField(10);
+        JLabel firstLabel = new JLabel("Integer Value");
         
         AddPopUp(){
-            names.add(firstLabel);
-            names.add(firstName);
-            
-            names.add(lastLabel);
-            names.add(lastName);
-            //.showConfirmDialog(null, p, "Family and first name : ", JOptionPane.OK_CANCEL_OPTION);
+            numbers.add(firstLabel);
+            numbers.add(input_val);
         }
         
         AddPopUp(String f, String l){ //Overload for edit popup
-            names.add(firstLabel);
-            names.add(firstName);
-            this.firstName.setText(f);
-            names.add(lastLabel);
-            names.add(lastName);
-            this.lastName.setText(l);
+            numbers.add(firstLabel);
+            numbers.add(input_val);
+            this.input_val.setText(f);
         }        
     }
        public class FindPersonPop{

@@ -12,14 +12,32 @@ package familytree;
 public class BinaryTree extends BaseTree{
     
     private class Node{
-        int val;
+        private int val;
+        private Node low;
+        private Node high;
+        
         Node(int v){
             val = v;
+            low = null;
+            high = null;
+        }  
+        
+        int getVal(){
+            return val;
+        }
+        Node getLow(){
+            return low;
+        }
+        Node getHigh(){
+            return high;
         }
     }
-    
     int nodes;
     Node root;
+    
+    BinaryTree(){
+        root = null;
+    }
     
     /*ALL THESE FUNCTIONS ARE UNDER INCOMPLETE*/
     @Override
@@ -39,8 +57,22 @@ public class BinaryTree extends BaseTree{
         return root;
     }
     
-    public void addNode(int val){
-        Node n = new Node(val);
+    public void addNode(Node r, int val){
+        
+        if(root == null){
+            root = new Node(val);
+            return;
+        }
+        else if(r == null){
+            r = new Node(val);
+            return;
+        }
+        else if(r.getVal() >= val){
+            addNode(r.getLow(), val);
+        }
+        else{
+            addNode(r.getHigh(), val);
+        }
     }
     
     public Node findNode(){
