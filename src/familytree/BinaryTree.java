@@ -10,8 +10,18 @@ package familytree;
  * @author Vinod
  */
 public class BinaryTree extends BaseTree{
-    int nodes;
     
+    private class Node{
+        int val;
+        Node(int v){
+            val = v;
+        }
+    }
+    
+    int nodes;
+    Node root;
+    
+    /*ALL THESE FUNCTIONS ARE UNDER INCOMPLETE*/
     @Override
     public String loadTree(String fileName){
         return "load";
@@ -24,5 +34,16 @@ public class BinaryTree extends BaseTree{
     public int nodeCount(int count){
         return 0;
     }    
-    //public 
+    //public W
+    public Node getRoot(){
+        return root;
+    }
+    
+    public void addNode(int val){
+        Node n = new Node(val);
+    }
+    
+    public Node findNode(){
+        return root;
+    }
 }

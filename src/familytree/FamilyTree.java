@@ -65,9 +65,7 @@ public class FamilyTree extends BaseTree {
     }
     
     public Person getRoot(){
-
         return root;
-        
     }
     
     public ArrayList<Integer> getDepthTracker(){

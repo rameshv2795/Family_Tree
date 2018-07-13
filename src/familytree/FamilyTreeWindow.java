@@ -47,7 +47,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Vinod
  */
-public class Window extends JFrame{
+public class FamilyTreeWindow extends JFrame{
     
     private JPanel design;
     private Painting paint;
@@ -67,7 +67,7 @@ public class Window extends JFrame{
     private Font border;
     private Dimension screenSize;
     
-    Window(BaseTree tree){ 
+    FamilyTreeWindow(BaseTree tree){ 
         t = (FamilyTree) tree;
         initial();          
         createWindow();
@@ -292,7 +292,7 @@ public class Window extends JFrame{
                            //       chooser.getSelectedFile().getName());
                            t.loadTree(chooser.getSelectedFile().getAbsolutePath());
                        } catch (Exception ex) {
-                           Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
+                           Logger.getLogger(FamilyTreeWindow.class.getName()).log(Level.SEVERE, null, ex);
                        }
                    }
                    
