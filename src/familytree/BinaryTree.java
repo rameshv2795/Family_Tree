@@ -46,20 +46,17 @@ public class BinaryTree extends BaseTree{
     public int getMaxDepth(){
         return maxDepth;
     }     
-         
-   
-    public void addNode(Node r, int val){
+           
+    public void addNode(Node r, int val, Node par){
 
         if(root == null){
-            root = new Node(val, -1);
+            root = new Node(val, -1, null);
             nodesTotal++;
             maxDepth++; //-1 + 1 = 0
             depthTracker.add(1);         
-         
-            return;
         }
         else if(r == null){
-            r = new Node(val, r.getParentDepth());
+            r = new Node(val, r.getParentDepth(), par);
             if(maxDepth < r.getDepth()){
                 maxDepth++;
                 depthTracker.add(1); //Adds new debth counter
@@ -71,14 +68,17 @@ public class BinaryTree extends BaseTree{
             return;
         }
         else if(r.getVal() >= val){
-            addNode(r.getLow(), val);
+            addNode(r.getLow(), val, r);
         }
         else{
-            addNode(r.getHigh(), val);
+            addNode(r.getHigh(), val, r);
         }
+        
+        System.out.println("ROOT VALUE: " + root.getVal());
     }
     
     public Node findNode(){
         return root;
     }
+    
 }

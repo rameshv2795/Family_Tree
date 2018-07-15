@@ -14,14 +14,16 @@ public class Node{
     private int val;
     private Node low;
     private Node high;
+    private Node parent; //needed for GUI
     private int nodeDepth, parentDepth;
 
-    Node(int v, int p){
+    Node(int v, int p, Node par){
         val = v;
         low = null;
         high = null;
         parentDepth = p;
         nodeDepth = parentDepth + 1;
+        parent = par;
     }  
 
     int getVal(){
@@ -38,5 +40,8 @@ public class Node{
     }
     int getDepth(){
         return nodeDepth;
-    }        
+    }    
+    Node getParent(){
+        return parent;
+    }
 }

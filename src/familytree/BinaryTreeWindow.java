@@ -223,7 +223,7 @@ public class BinaryTreeWindow extends JFrame{
                     JOptionPane.showConfirmDialog(null, pop.numbers, "Adding First Node", JOptionPane.OK_CANCEL_OPTION);
 
                     in_val = Integer.parseInt(pop.input_val.getText());
-                 //   t.addNode(t.getRoot(), in_val); //NEED TO ADD WHEN DONE 
+                    t.addNode(t.getRoot(), in_val, null);  
                     repaint();
                     
                     return;
@@ -375,32 +375,32 @@ public class BinaryTreeWindow extends JFrame{
         Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at Parent Position plus 1)
         */
         private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth,int iterCount){
-/*
-            if(iter.getChildren().isEmpty()){ //BASE 1
+
+            if(iter.getLow() == null && iter.getHigh() == null){ //BASE 1
                 
                 g.setColor(yellow);
                 g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); // The 620 and 180 are related to the JFrame
                 g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
                 l.setColor(Color.black);
-                l.drawString(iter.getFirst(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+35);
+                l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);
                 //l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+48);
                 coord.add(new XY()); //Store location of oval for mouse
-                coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180; //All this to keep track if node is clicked 
-                coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5;
-                coord.get(coord.size()-1).first = iter.getFirst();
+                coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180; //All this to keep track if node is clicked 
+                coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getDepth()+1))+5;
+                coord.get(coord.size()-1).first = Integer.toString(iter.getVal());
                 //coord.get(coord.size()-1).last = iter.getLast();
 
                 if(iter.getParent() != null){
                     l.setColor(Color.black);
-                    l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+40, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getMaxDepth())+1))*((depthCopy.get(iter.getMaxDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getMaxDepth()+1))+86.5));    
+                    l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+86.5));    
                 }  
-                depthCopy.set(iter.getMaxDepth(),depthCopy.get(iter.getMaxDepth()) + 1);
+                depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
 
                 return;
             }    
             
             else{
-                for(int i = 0; i<iter.getChildren().size(); i++){
+               /* for(int i = 0; i<iter.getChildren().size(); i++){
 
                     if(i == 0){
                         g.setColor(yellow);
@@ -422,8 +422,8 @@ public class BinaryTreeWindow extends JFrame{
                         depthCopy.set(iter.getMaxDepth(),depthCopy.get(iter.getMaxDepth()) + 1);
                     }
                     PaintTree(g,l,iter.getChildren().get(i),maxDepth,iterCount++); 
-                }        
-            }  */
+                } */       
+            }  
         }       
 
         @Override
