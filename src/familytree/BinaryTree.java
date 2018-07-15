@@ -5,38 +5,22 @@
  */
 package familytree;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Vinod
  */
 public class BinaryTree extends BaseTree{
-    
-    private class Node{
-        private int val;
-        private Node low;
-        private Node high;
-        
-        Node(int v){
-            val = v;
-            low = null;
-            high = null;
-        }  
-        
-        int getVal(){
-            return val;
-        }
-        Node getLow(){
-            return low;
-        }
-        Node getHigh(){
-            return high;
-        }
-    }
-    int nodes;
+    int nodesTotal, maxDepth;
     Node root;
-    
+    private ArrayList<Integer> depthTracker;
+        
     BinaryTree(){
         root = null;
+        depthTracker = new ArrayList<Integer> (0);
+        nodesTotal = 0;
+        maxDepth = 0;
     }
     
     /*ALL THESE FUNCTIONS ARE UNDER INCOMPLETE*/
@@ -56,15 +40,34 @@ public class BinaryTree extends BaseTree{
     public Node getRoot(){
         return root;
     }
-    
+    public ArrayList<Integer> getDepthTracker(){
+        return depthTracker;
+    } 
+    public int getMaxDepth(){
+        return maxDepth;
+    }     
+         
+   
     public void addNode(Node r, int val){
-        
+
         if(root == null){
-            root = new Node(val);
+            root = new Node(val, -1);
+            nodesTotal++;
+            maxDepth++; //-1 + 1 = 0
+            depthTracker.add(1);         
+         
             return;
         }
         else if(r == null){
-            r = new Node(val);
+            r = new Node(val, r.getParentDepth());
+            if(maxDepth < r.getDepth()){
+                maxDepth++;
+                depthTracker.add(1); //Adds new debth counter
+            }//System.out.println(parent.getChildren().size());   
+            else{
+                depthTracker.set(r.getDepth(),depthTracker.get(r.getDepth())+1); //Increments certain debth   
+            }    
+            nodesTotal++;
             return;
         }
         else if(r.getVal() >= val){
