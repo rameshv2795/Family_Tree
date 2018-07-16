@@ -214,7 +214,7 @@ public class BinaryTreeWindow extends JFrame{
             public void actionPerformed(ActionEvent event){ //Want own action preformed
 
                 if(whichButton == 1){
-                    JOptionPane.showMessageDialog(null, "Button Already Activated. Click On A Node To Add A New Node", "Button Already Active", INFORMATION_MESSAGE);
+                    //JOptionPane.showMessageDialog(null, "Button Already Activated. Click On A Node To Add A New Node", "Button Already Active", INFORMATION_MESSAGE);
                 }
                 resetButtons();
                 activateButton(1);
@@ -228,6 +228,16 @@ public class BinaryTreeWindow extends JFrame{
                     
                     return;
               }
+                else{
+                    AddPopUp pop = new AddPopUp();
+                    JOptionPane.showConfirmDialog(null, pop.numbers, "Adding Node", JOptionPane.OK_CANCEL_OPTION);
+
+                    in_val = Integer.parseInt(pop.input_val.getText());
+                    t.addNode(t.getRoot(), in_val, null);  
+                    repaint();
+                    
+                    return;                    
+                }
             }     
         }); 
     }
@@ -468,8 +478,9 @@ public class BinaryTreeWindow extends JFrame{
             
             for(int i = 0; i < coord.size(); i++){
                 if(coord.get(i).xClick == x && coord.get(i).yClick == x ){
-                    if(buttonPressed)
-                        DrawChild(coord.get(i).first,coord.get(i).last);
+                    if(buttonPressed){
+                        //DrawChild(coord.get(i).first,coord.get(i).last);
+                    }    
                     else if(button2Pressed)
                         DrawChildDelete(coord.get(i).first,coord.get(i).last);
                     else if(editPressed)

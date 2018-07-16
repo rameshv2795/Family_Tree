@@ -20,7 +20,7 @@ public class BinaryTree extends BaseTree{
         root = null;
         depthTracker = new ArrayList<Integer> (0);
         nodesTotal = 0;
-        maxDepth = 0;
+        maxDepth = -1;
     }
     
     /*ALL THESE FUNCTIONS ARE UNDER INCOMPLETE*/
@@ -56,7 +56,8 @@ public class BinaryTree extends BaseTree{
             depthTracker.add(1);         
         }
         else if(r == null){
-            r = new Node(val, r.getParentDepth(), par);
+            System.out.println("parentdep VALUE: " + par.getDepth());
+            r = new Node(val, par.getDepth(), par); 
             if(maxDepth < r.getDepth()){
                 maxDepth++;
                 depthTracker.add(1); //Adds new debth counter
