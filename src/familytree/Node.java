@@ -17,13 +17,17 @@ public class Node{
     private Node parent; //needed for GUI
     private int nodeDepth, parentDepth;
 
-    Node(int v, int p, Node par){
+    Node(int v, Node par){
         val = v;
         low = null;
         high = null;
-        parentDepth = p;
-        nodeDepth = parentDepth + 1;
         parent = par;
+        if(parent == null){
+            nodeDepth = 0;
+        }
+        else{
+            nodeDepth = parent.getDepth() + 1;
+        }
     }  
 
     int getVal(){
@@ -41,6 +45,13 @@ public class Node{
     int getDepth(){
         return nodeDepth;
     }    
+    void setLow(int v){
+        System.out.println(this);
+        low = new Node(v, this);
+    }
+    void setHigh(int v){
+        high = new Node(v, this);
+    }
     Node getParent(){
         return parent;
     }

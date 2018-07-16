@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Main {
     
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         BaseTree treeType;
         Object[] treeValues = { "Family Tree", "Binary Tree", "Third" };
         Object selectedTree = JOptionPane.showInputDialog(null,
@@ -26,5 +26,4 @@ public class Main {
             BinaryTreeWindow frame = new BinaryTreeWindow(treeType);
         }
     }
-
 }

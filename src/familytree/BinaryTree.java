@@ -48,16 +48,19 @@ public class BinaryTree extends BaseTree{
     }     
            
     public void addNode(Node r, int val, Node par){
-
+        System.out.println("Adding: " + val);
         if(root == null){
-            root = new Node(val, -1, null);
+            System.out.println("IS ROOT");
+            root = new Node(val, null);
             nodesTotal++;
             maxDepth++; //-1 + 1 = 0
-            depthTracker.add(1);         
+            depthTracker.add(1);     
+            
+            return;
         }
-        else if(r == null){
-            System.out.println("parentdep VALUE: " + par.getDepth());
+        /*else if(r == null){
             r = new Node(val, par.getDepth(), par); 
+            System.out.println("Node Depth: " + r.getDepth());
             if(maxDepth < r.getDepth()){
                 maxDepth++;
                 depthTracker.add(1); //Adds new debth counter
@@ -66,20 +69,60 @@ public class BinaryTree extends BaseTree{
                 depthTracker.set(r.getDepth(),depthTracker.get(r.getDepth())+1); //Increments certain debth   
             }    
             nodesTotal++;
+            
             return;
-        }
+        }*/
         else if(r.getVal() >= val){
-            addNode(r.getLow(), val, r);
+            if(r.getLow() != null){
+                System.out.println("Lower");
+                addNode(r.getLow(), val, r);
+            }
+            else{
+                nodesTotal++;
+                r.setLow(val);
+                if(maxDepth < r.getLow().getDepth()){
+                    maxDepth++;
+                    depthTracker.add(1); //Adds new debth counter
+                }     
+                else{
+                    depthTracker.set(r.getLow().getDepth(),depthTracker.get(r.getLow().getDepth())+1);
+                }
+            }
         }
         else{
-            addNode(r.getHigh(), val, r);
+            if(r.getHigh() != null){
+                System.out.println("HIGHER");
+                addNode(r.getHigh(), val, r);
+            }
+            else{
+                nodesTotal++;
+                r.setHigh(val);
+                if(maxDepth < r.getHigh().getDepth()){
+                    maxDepth++;
+                    depthTracker.add(1); //Adds new debth counter
+                }    
+                else{
+                    depthTracker.set(r.getHigh().getDepth(),depthTracker.get(r.getHigh().getDepth())+1);
+                }
+            }            
         }
         
-        System.out.println("ROOT VALUE: " + root.getVal());
+        //System.out.println("ROOT VALUE: " + root.getVal());
     }
     
     public Node findNode(){
         return root;
+    }
+    
+    public void printTree(Node n){
+        if(n == null){
+            return;
+        }
+        else{
+            printTree(n.getLow());
+            System.out.println(n.getVal());
+            printTree(n.getHigh());
+        }
     }
     
 }

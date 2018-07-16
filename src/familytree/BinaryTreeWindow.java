@@ -225,9 +225,9 @@ public class BinaryTreeWindow extends JFrame{
                     in_val = Integer.parseInt(pop.input_val.getText());
                     t.addNode(t.getRoot(), in_val, null);  
                     repaint();
-                    
+                    t.printTree(t.getRoot());
                     return;
-              }
+                }
                 else{
                     AddPopUp pop = new AddPopUp();
                     JOptionPane.showConfirmDialog(null, pop.numbers, "Adding Node", JOptionPane.OK_CANCEL_OPTION);
@@ -235,7 +235,7 @@ public class BinaryTreeWindow extends JFrame{
                     in_val = Integer.parseInt(pop.input_val.getText());
                     t.addNode(t.getRoot(), in_val, null);  
                     repaint();
-                    
+                    t.printTree(t.getRoot());
                     return;                    
                 }
             }     
@@ -413,10 +413,10 @@ public class BinaryTreeWindow extends JFrame{
                 if(iter.getLow() != null){
                     PaintTree(g,l,iter.getLow(),maxDepth); //recursive calls
                 }
-                else if(iter.getHigh() != null){
+                if(iter.getHigh() != null){
                     PaintTree(g,l,iter.getHigh(),maxDepth);
                 }
-        }  
+            }  
         }       
 
         @Override
