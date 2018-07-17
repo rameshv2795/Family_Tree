@@ -410,12 +410,45 @@ public class BinaryTreeWindow extends JFrame{
             }    
             
             else{
-                if(iter.getLow() != null){
-                    PaintTree(g,l,iter.getLow(),maxDepth); //recursive calls
-                }
-                if(iter.getHigh() != null){
-                    PaintTree(g,l,iter.getHigh(),maxDepth);
-                }
+                int first_drawn = 0;
+                for(int i = 0; i < 2; i++){
+                    
+                    int left_right_first = 0;
+                    
+                    if(iter.getLow() == null && i == 0){
+                        left_right_first = 1;
+                    }
+                    else if(iter.getHigh() != null){
+                        left_right_first = 2;
+                    }    
+                    
+                    if((left_right_first == 1 || left_right_first == 2) && first_drawn == 0){
+                        g.setColor(yellow);
+                        g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
+                        g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
+                        l.setColor(Color.black);
+                        l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);
+                        
+                       /* coord.add(new XY());
+                        coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getDepth()))+180;
+                        coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getDepth()+1))+5;
+                        coord.get(coord.size()-1).first = iter.getFirst();
+                        coord.get(coord.size()-1).last = iter.getLast();*/
+
+                        if(iter.getParent() != null){                      
+                            l.setColor(Color.black);
+                            l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+86.5));                                                         
+                        }
+                        depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
+                        first_drawn = 1;
+                    }
+                    if(iter.getLow() != null && i == 0){
+                        PaintTree(g,l,iter.getLow(),maxDepth); 
+                    }
+                    else if(iter.getHigh() != null & i == 1){
+                        PaintTree(g,l,iter.getHigh(),maxDepth); 
+                    }                    
+                }   
             }  
         }       
 

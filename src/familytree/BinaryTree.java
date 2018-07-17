@@ -36,7 +36,6 @@ public class BinaryTree extends BaseTree{
     public int nodeCount(int count){
         return 0;
     }    
-    //public W
     public Node getRoot(){
         return root;
     }
