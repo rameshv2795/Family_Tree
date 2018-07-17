@@ -422,7 +422,7 @@ public class BinaryTreeWindow extends JFrame{
                         left_right_first = 2;
                     }    
                     
-                    if((left_right_first == 1 || left_right_first == 2) && first_drawn == 0){
+                    if(i == 0){
                         g.setColor(yellow);
                         g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
                         g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
