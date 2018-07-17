@@ -5,7 +5,7 @@ Family Tree using a Tree of ArrayLists. There is no upper bound for children. Ea
 1. Run using NetBeans IDE 7.4.
 
 # Status
-The Add, Delete, and Edit functionalities seem to be working as intended. Working on saving and loading. Improving the UI and adding save and load functionalities will be implemented in the future. 
+The Add, Delete, and Edit functionalities are working as intended. Working on saving and loading. 
 
 Integrating Binary Tree option.
 
