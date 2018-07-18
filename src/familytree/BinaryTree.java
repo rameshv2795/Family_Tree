@@ -48,6 +48,7 @@ public class BinaryTree extends BaseTree{
            
     public void addNode(Node r, int val, Node par){
         System.out.println("Adding: " + val);
+        int wide_count = 1;
         if(root == null){
             System.out.println("IS ROOT");
             root = new Node(val, null);
@@ -72,19 +73,24 @@ public class BinaryTree extends BaseTree{
             return;
         }*/
         else if(r.getVal() >= val){
+            
             if(r.getLow() != null){
                 System.out.println("Lower");
                 addNode(r.getLow(), val, r);
             }
-            else{
+            else{         
                 nodesTotal++;
                 r.setLow(val);
+                if(r.getHigh() == null){
+                    wide_count = r.getLow().getDepth() * 2;
+                }       
+                
                 if(maxDepth < r.getLow().getDepth()){
                     maxDepth++;
-                    depthTracker.add(1); //Adds new debth counter
+                    depthTracker.add(wide_count); //Adds new debth counter
                 }     
                 else{
-                    depthTracker.set(r.getLow().getDepth(),depthTracker.get(r.getLow().getDepth())+1);
+                    //depthTracker.set(r.getLow().getDepth(),depthTracker.get(r.getLow().getDepth()) + wide_count);
                 }
             }
         }
@@ -96,12 +102,17 @@ public class BinaryTree extends BaseTree{
             else{
                 nodesTotal++;
                 r.setHigh(val);
+                if(r.getLow() == null){
+                    wide_count = r.getHigh().getDepth() * 2;
+                }
+                
                 if(maxDepth < r.getHigh().getDepth()){
                     maxDepth++;
-                    depthTracker.add(1); //Adds new debth counter
+
+                    depthTracker.add(wide_count); //Adds new debth counter
                 }    
                 else{
-                    depthTracker.set(r.getHigh().getDepth(),depthTracker.get(r.getHigh().getDepth())+1);
+                    //depthTracker.set(r.getHigh().getDepth(),depthTracker.get(r.getHigh().getDepth()) + wide_count);
                 }
             }            
         }

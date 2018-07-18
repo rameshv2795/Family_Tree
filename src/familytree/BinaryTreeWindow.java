@@ -384,7 +384,7 @@ public class BinaryTreeWindow extends JFrame{
         X Axis: (X JFrame length) / (# of nodes at parent debth + 1 * by counter for # of nodes in parent maxDepth) 
         Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at Parent Position plus 1)
         */
-        private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth){
+        private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth, String direction){
 
             if(iter.getLow() == null && iter.getHigh() == null){ //BASE 1
                 
@@ -410,17 +410,7 @@ public class BinaryTreeWindow extends JFrame{
             }    
             
             else{
-                int first_drawn = 0;
                 for(int i = 0; i < 2; i++){
-                    
-                    int left_right_first = 0;
-                    
-                    if(iter.getLow() == null && i == 0){
-                        left_right_first = 1;
-                    }
-                    else if(iter.getHigh() != null){
-                        left_right_first = 2;
-                    }    
                     
                     if(i == 0){
                         g.setColor(yellow);
@@ -440,13 +430,12 @@ public class BinaryTreeWindow extends JFrame{
                             l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+86.5));                                                         
                         }
                         depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
-                        first_drawn = 1;
                     }
                     if(iter.getLow() != null && i == 0){
-                        PaintTree(g,l,iter.getLow(),maxDepth); 
+                        PaintTree(g,l,iter.getLow(),maxDepth,"left"); 
                     }
                     else if(iter.getHigh() != null & i == 1){
-                        PaintTree(g,l,iter.getHigh(),maxDepth); 
+                        PaintTree(g,l,iter.getHigh(),maxDepth,"right"); 
                     }                    
                 }   
             }  
@@ -471,7 +460,7 @@ public class BinaryTreeWindow extends JFrame{
             }
             
             if(t.getRoot() != null)
-                PaintTree(oval,line,t.getRoot(),t.getMaxDepth());
+                PaintTree(oval,line,t.getRoot(),t.getMaxDepth(), "right"); //direction parameter doesn't matter ("right")
         }   
     }
 
