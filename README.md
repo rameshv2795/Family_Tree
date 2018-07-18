@@ -7,7 +7,7 @@ Family Tree using a Tree of ArrayLists. There is no upper bound for children. Ea
 # Status
 The Add, Delete, and Edit functionalities are working as intended. Working on saving and loading. 
 
-Integrating Binary Tree option.
+Integrating Binary Search Tree option.
 
 # Screen
 ![alt text](tree2.png "Sample family tree 2")
