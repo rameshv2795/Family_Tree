@@ -386,7 +386,7 @@ public class BinaryTreeWindow extends JFrame{
         */
         private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth, String direction){
 
-            if(iter.getLow() == null && iter.getHigh() == null){ //BASE 1
+            if(iter.getLow() == null && iter.getHigh() == null && direction != "inviz"){ //BASE 1
                 
                 g.setColor(yellow);
                 g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); // The 620 and 180 are related to the JFrame
@@ -409,7 +409,7 @@ public class BinaryTreeWindow extends JFrame{
                 return;
             }    
             
-            else{
+            else if(direction != "inviz"){
                 for(int i = 0; i < 2; i++){
                     
                     if(i == 0){
@@ -419,12 +419,6 @@ public class BinaryTreeWindow extends JFrame{
                         l.setColor(Color.black);
                         l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);
                         
-                       /* coord.add(new XY());
-                        coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getDepth()))+180;
-                        coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getDepth()+1))+5;
-                        coord.get(coord.size()-1).first = iter.getFirst();
-                        coord.get(coord.size()-1).last = iter.getLast();*/
-
                         if(iter.getParent() != null){                      
                             l.setColor(Color.black);
                             l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+86.5));                                                         
@@ -434,11 +428,20 @@ public class BinaryTreeWindow extends JFrame{
                     if(iter.getLow() != null && i == 0){
                         PaintTree(g,l,iter.getLow(),maxDepth,"left"); 
                     }
+                    else if(iter.getLow() == null && i == 0){ //draw invisible node for GUI scale
+                        PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
+                    }
                     else if(iter.getHigh() != null & i == 1){
                         PaintTree(g,l,iter.getHigh(),maxDepth,"right"); 
+                    }  
+                    else if(iter.getHigh() == null && i == 0){
+                        PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
                     }                    
                 }   
-            }  
+            }
+            else{
+                depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
+            }
         }       
 
         @Override
