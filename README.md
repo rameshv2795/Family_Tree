@@ -7,7 +7,7 @@ Family Tree using a Tree of ArrayLists. There is no upper bound for children. Ea
 # Status
 The Add, Delete, and Edit functionalities are working as intended. Working on saving and loading. 
 
-Integrating Binary Search Tree option.
+Integrating Binary Search Tree option. Binary Search Tree data structure working. GUI still has some bugs (working on).
 
 # Screens
 ![alt text](selection.png "Selection")
