@@ -9,6 +9,7 @@ The Add, Delete, and Edit functionalities are working as intended. Working on sa
 
 Integrating Binary Search Tree option.
 
-# Screen
-![alt text](tree2.png "Sample family tree 2")
-![alt text](tree.png "Sample family tree ")
+# Screens
+![alt text](selection.png "Selection")
+![alt text](tree3.png "Sample family tree ")
+![alt text](binary_search.png "Sample binary search tree ")
