@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args){
         BaseTree treeType;
-        Object[] treeValues = { "Family Tree", "Binary Tree", "Third" };
+        Object[] treeValues = { "Family Tree", "Binary Search Tree", "Third" };
         Object selectedTree = JOptionPane.showInputDialog(null,
         "Select Tree Type", "Type",
         JOptionPane.INFORMATION_MESSAGE, null,
@@ -21,7 +21,7 @@ public class Main {
             FamilyTreeWindow frame = new FamilyTreeWindow(treeType);  
             //frame.setSize(2000,2000);
         }
-        else if(selectedTree == "Binary Tree"){
+        else if(selectedTree == "Binary Search Tree"){
             treeType = new BinaryTree();
             BinaryTreeWindow frame = new BinaryTreeWindow(treeType);
         }

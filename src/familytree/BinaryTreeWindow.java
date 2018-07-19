@@ -81,7 +81,7 @@ public class BinaryTreeWindow extends JFrame{
         // http://paletton.com/#uid=12C0u0kllllaFw0g0qFqFg0w0aF
         depthCopy = new ArrayList<Integer> (0);
         parentCopy = new ArrayList<Integer> (0);
-        lightgreen = Color.decode("#B5E196");
+        lightgreen = Color.decode("#D7E4F5");
         yellow = Color.decode("#85BC5E");
         lightOrange = Color.decode("#85BC5E");
         grey = new Color(224,224,224);
@@ -176,7 +176,7 @@ public class BinaryTreeWindow extends JFrame{
         loadAction();
         //saveAction();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Binary Tree");
+        setTitle("Binary Search Tree");
         getContentPane().add(label, BorderLayout.CENTER);
         setSize(800, 800);
         setLocationRelativeTo(null);
