@@ -61,7 +61,7 @@ public class FamilyTreeWindow extends JFrame{
     private String fname,lname,pf,pl;
     private int maxDepth,spot,people,whichButton;
     private Person p,q,r,s,sonS,sonS2,sonR,sson,x,y,z;
-    private Color lightgreen,yellow,lightOrange,grey, darkGreen;
+    private Color lightgreen,yellow,lightOrange,grey, darkGreen, brown;
     private ArrayList<Integer> depthCopy,parentCopy;
     private ArrayList<XY> coord;
     private Font border;
@@ -85,6 +85,7 @@ public class FamilyTreeWindow extends JFrame{
         lightOrange = Color.decode("#85BC5E");
         grey = new Color(224,224,224);
         darkGreen =  Color.decode("#468615");
+        brown = Color.decode("#784212");
         people = 1;
         button = new JButton("Add Person");
         button2 = new JButton("Delete Person");
@@ -213,7 +214,7 @@ public class FamilyTreeWindow extends JFrame{
             public void actionPerformed(ActionEvent event){ //Want own action preformed
 
                 if(whichButton == 1){
-                    JOptionPane.showMessageDialog(null, "Button Already Activated. Click On A Node To Add A New Person", "Button Already Active", INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Button already activated. Click on a node to add a new person", "Button Already Active", INFORMATION_MESSAGE);
                 }
                 resetButtons();
                 activateButton(1);
@@ -314,7 +315,7 @@ public class FamilyTreeWindow extends JFrame{
         lname = pop.lastName.getText();
         
         if(t.findPerson(t.getRoot(), fname, lname) != null){ //Check if Person already exists
-            JOptionPane.showMessageDialog(null, "Person Already Exists", "Duplicate Person", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Person already exists", "Duplicate Person", ERROR_MESSAGE);
             return;
         }
         
@@ -391,7 +392,7 @@ public class FamilyTreeWindow extends JFrame{
                 coord.get(coord.size()-1).last = iter.getLast();
 
                 if(iter.getParent() != null){
-                    l.setColor(Color.black);
+                    l.setColor(brown);
                     l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+40, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getMaxDepth())+1))*((depthCopy.get(iter.getMaxDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getMaxDepth()+1))+86.5));    
                 }  
                 depthCopy.set(iter.getMaxDepth(),depthCopy.get(iter.getMaxDepth()) + 1);
@@ -416,7 +417,7 @@ public class FamilyTreeWindow extends JFrame{
                         coord.get(coord.size()-1).last = iter.getLast();
 
                         if(iter.getParent() != null){                      
-                            l.setColor(Color.black);
+                            l.setColor(brown);
                             l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180+40, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getMaxDepth())+1))*((depthCopy.get(iter.getMaxDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getMaxDepth()+1))+86.5));                                                         
                         }
                         depthCopy.set(iter.getMaxDepth(),depthCopy.get(iter.getMaxDepth()) + 1);

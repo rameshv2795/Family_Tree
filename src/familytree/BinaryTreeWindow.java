@@ -416,17 +416,24 @@ public class BinaryTreeWindow extends JFrame{
                 PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
                 //return;
             }    
-            
+                                                                                
             else if(direction != "inviz"){
                 for(int i = 0; i < 2; i++){
-                    
+                                                                                
                     if(i == 0){
                         g.setColor(yellow);
-                        g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
-                        g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
-                        l.setColor(Color.black);
-                        l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);
-                        
+                        if(direction == "left"){
+                            g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
+                            g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
+                            l.setColor(Color.black);
+                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);                            
+                        }
+                        else if(direction == "right"){
+                            g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
+                            g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
+                            l.setColor(Color.black);
+                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);                            
+                        }                     
                         if(iter.getParent() != null){                      
                             if(direction == "right"){
                                 l.setColor(Color.red);
