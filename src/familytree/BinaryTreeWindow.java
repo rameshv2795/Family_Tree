@@ -82,7 +82,7 @@ public class BinaryTreeWindow extends JFrame{
         depthCopy = new ArrayList<Integer> (0);
         parentCopy = new ArrayList<Integer> (0);
         lightgreen = Color.decode("#D7E4F5");
-        yellow = Color.decode("#85BC5E");
+        yellow = Color.decode("#F1C40F");
         lightOrange = Color.decode("#85BC5E");
         grey = new Color(224,224,224);
         darkGreen =  Color.decode("#468615");
