@@ -23,7 +23,7 @@ public class BinaryTree extends BaseTree{
         maxDepth = -1;
     }
     
-    /*ALL THESE FUNCTIONS ARE UNDER INCOMPLETE*/
+    /*ALL THESE FUNCTIONS ARE INCOMPLETE*/
     @Override
     public String loadTree(String fileName){
         return "load";
@@ -58,20 +58,6 @@ public class BinaryTree extends BaseTree{
             
             return;
         }
-        /*else if(r == null){
-            r = new Node(val, par.getDepth(), par); 
-            System.out.println("Node Depth: " + r.getDepth());
-            if(maxDepth < r.getDepth()){
-                maxDepth++;
-                depthTracker.add(1); //Adds new debth counter
-            }//System.out.println(parent.getChildren().size());   
-            else{
-                depthTracker.set(r.getDepth(),depthTracker.get(r.getDepth())+1); //Increments certain debth   
-            }    
-            nodesTotal++;
-            
-            return;
-        }*/
         else if(r.getVal() >= val){
             
             if(r.getLow() != null){
@@ -116,8 +102,6 @@ public class BinaryTree extends BaseTree{
                 }
             }            
         }
-        
-        //System.out.println("ROOT VALUE: " + root.getVal());
     }
     
     public Node findNode(){
