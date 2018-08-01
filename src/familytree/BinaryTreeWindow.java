@@ -40,6 +40,7 @@ import javax.swing.Box;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -269,15 +270,11 @@ public class BinaryTreeWindow extends JFrame{
             
             @Override //
              public void actionPerformed(ActionEvent event){
-
                    resetButtons();
                    activateButton(5);
                    System.exit(0);
-
              }
-    
-        });
-    
+        });  
     }    
         
     private void loadAction(){
@@ -385,7 +382,7 @@ public class BinaryTreeWindow extends JFrame{
         Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at Parent Position plus 1)
         */
         private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth, String direction){
-
+System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
             if(iter.getLow() == null && iter.getHigh() == null && direction != "inviz"){ //BASE 1
                 System.out.println("Depth: "+ t.getDepthTracker().get(iter.getDepth()));
                 System.out.println("Depth Copy: " + depthCopy.get(iter.getDepth()));
@@ -412,8 +409,8 @@ public class BinaryTreeWindow extends JFrame{
                 }  
                 depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
                 depthCopy.add(0);
-                PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
-                PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
+                //PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
+                //PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
                 //return;
             }    
                                                                                 
@@ -448,19 +445,27 @@ public class BinaryTreeWindow extends JFrame{
                     if(iter.getLow() != null && i == 0){
                         PaintTree(g,l,iter.getLow(),maxDepth,"left"); 
                     }
-                    else if(iter.getLow() == null && i == 0){ //draw invisible node for GUI scale
+                   /* else if(iter.getLow() == null && i == 0){ //draw invisible node for GUI scale
                         PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
-                    }
+                    }*/
                     else if(iter.getHigh() != null & i == 1){
                         PaintTree(g,l,iter.getHigh(),maxDepth,"right"); 
                     }  
-                    else if(iter.getHigh() == null && i == 0){
+                    /*else if(iter.getHigh() == null && i == 0){
                         PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
-                    }                    
+                    }*/
+                    else if(iter.getDepth() < t.getMaxDepth()){
+                        PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
+                    }
                 }   
             }
             else if (direction == "inviz"){ //base case
-                depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
+                                        
+                g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
+                g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
+                l.setColor(Color.black);
+                l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);    
+                                depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
             }
         }       
 
