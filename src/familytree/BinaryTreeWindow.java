@@ -373,6 +373,7 @@ public class BinaryTreeWindow extends JFrame{
         }
 
         /*
+        depthCopy = maximum amount of nodes possible at a certain depth
         OVALS (adding 1 to maxDepth because lowest debth is 0)
         X Axis: (X JFrame length) / (# of nodes at certain debth + 1 * by counter for # of nodes in certain maxDepth) ... Counter increments
         Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at position + 1)
@@ -382,10 +383,8 @@ public class BinaryTreeWindow extends JFrame{
         Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at Parent Position plus 1)
         */
         private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth, String direction){
-System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
+            System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
             if(iter.getLow() == null && iter.getHigh() == null && direction != "inviz"){ //BASE 1
-                System.out.println("Depth: "+ t.getDepthTracker().get(iter.getDepth()));
-                System.out.println("Depth Copy: " + depthCopy.get(iter.getDepth()));
                 g.setColor(yellow);
                 g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); // The 620 and 180 are related to the JFrame
                 g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
@@ -466,6 +465,12 @@ System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDep
                 l.setColor(Color.black);
                 l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);    
                                 depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
+            }
+            System.out.println("Depth: "+ t.getDepthTracker().get(iter.getDepth()));
+            System.out.println("Depth Copy: " + depthCopy.get(iter.getDepth()));
+            if(iter.getDepth() < t.getMaxDepth() && t.getDepthTracker().get(iter.getDepth() + 1) < iter.getDepth()*2){
+                PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
+                //PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
             }
         }       
 
