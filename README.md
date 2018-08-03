@@ -5,11 +5,14 @@ Family Tree using a Tree of ArrayLists. There is no upper bound for children. Ea
 1. Run using NetBeans IDE 7.4.
 
 # Status
-The Add, Delete, and Edit functionalities are working as intended. Working on saving and loading. 
+Completed:
+The Add, Delete, and Edit functionalities are working as intended for Family Tree. Working on saving and loading (works with scaling bug). 
+Binary Search Tree data structure working. GUI works with a few bugs.
 
-Integrating Binary Search Tree option. Binary Search Tree data structure working. GUI still has some bugs (working on).
+Working:
+Binary Search Tree scaling goes off screen requiring manual window increase. Will implement checker to see if tree is a complete, balanced, perfect and/or degenerate tree. Check valid inputs.
 
 # Screens
 ![alt text](selection.png "Selection")
 ![alt text](tree3.png "Sample family tree ")
-![alt text](binary_search.png "Sample binary search tree ")
+![alt text](binary_tree2.png "Sample binary search tree ")
