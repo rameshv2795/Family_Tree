@@ -408,6 +408,10 @@ public class BinaryTreeWindow extends JFrame{
                 }  
                 depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
                 depthCopy.add(0);
+                if(iter.getDepth() < t.getMaxDepth()){
+                    PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
+                    PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
+                }
                 //PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
                 //PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
                 //return;
@@ -458,8 +462,7 @@ public class BinaryTreeWindow extends JFrame{
                     }
                 }   
             }
-            else if (direction == "inviz"){ //base case
-                                        
+            else if (direction == "inviz"){ //base case                      
                 //g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
                 //g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
                 //l.setColor(Color.black);
