@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author Vinod
  */
-public class BinaryTree extends BaseTree{
+public class BinarySearchTree extends BaseTree{
     int nodesTotal, maxDepth;
     Node root;
     private ArrayList<Integer> depthTracker;
         
-    BinaryTree(){
+    BinarySearchTree(){
         root = null;
         depthTracker = new ArrayList<Integer> (0);
         nodesTotal = 0;
@@ -119,4 +119,17 @@ public class BinaryTree extends BaseTree{
         }
     }
     
+    public Boolean isComplete(){
+        return false;
+    }
+    public Boolean isBalanced(){
+        return false;
+    }    
+    public Boolean isPerfect(){
+        return false;
+    }    
+    public Boolean isDegenerate(){
+        return false;
+    }    
 }
+

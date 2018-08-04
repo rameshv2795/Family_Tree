@@ -22,8 +22,8 @@ public class Main {
             //frame.setSize(2000,2000);
         }
         else if(selectedTree == "Binary Search Tree"){
-            treeType = new BinaryTree();
-            BinaryTreeWindow frame = new BinaryTreeWindow(treeType);
+            treeType = new BinarySearchTree();
+            BinarySearchTreeWindow frame = new BinarySearchTreeWindow(treeType);
         }
     }
 }

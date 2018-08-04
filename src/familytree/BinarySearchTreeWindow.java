@@ -48,11 +48,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Vinod
  */
-public class BinaryTreeWindow extends JFrame{
+public class BinarySearchTreeWindow extends JFrame{
     
     private JPanel design;
     private Painting paint;
-    private BinaryTree t;
+    private BinarySearchTree t;
     private JLabel label;
     private Graphics2D draw;
     private JFrame window,popUp;
@@ -69,8 +69,8 @@ public class BinaryTreeWindow extends JFrame{
     private Font border;
     private Dimension screenSize;
     
-    BinaryTreeWindow(BaseTree tree){ 
-        t = (BinaryTree) tree;
+    BinarySearchTreeWindow(BaseTree tree){ 
+        t = (BinarySearchTree) tree;
         initial();          
         createWindow();
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -114,6 +114,8 @@ public class BinaryTreeWindow extends JFrame{
         x=new Person("dsdfdd","sdf",2,s,2);
         y=new Person("dsdfdd","sdf",2,s,2);
         z=new Person("dsdfdd","sdf",2,s,2);
+        
+        //draw.drawString("Not Complete Tree", 0, 100);
     }
 
     public JButton getButton(){
@@ -298,7 +300,7 @@ public class BinaryTreeWindow extends JFrame{
                            //       chooser.getSelectedFile().getName());
                            t.loadTree(chooser.getSelectedFile().getAbsolutePath());
                        } catch (Exception ex) {
-                           Logger.getLogger(BinaryTreeWindow.class.getName()).log(Level.SEVERE, null, ex);
+                           Logger.getLogger(BinarySearchTreeWindow.class.getName()).log(Level.SEVERE, null, ex);
                        }
                    }
                    
@@ -383,6 +385,19 @@ public class BinaryTreeWindow extends JFrame{
         Y Axis: (Y JFrame length / Total Tree maxDepth + 2) * (maxDepth at Parent Position plus 1)
         */
         private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth, String direction){
+            
+            if(!t.isComplete()){
+                l.setColor(Color.red);
+                l.drawString("Not Complete Tree",20,300);    
+            }
+            else{
+                l.setColor(Color.green);     
+                l.drawString("Is Complete Tree",20,300); 
+            }
+            l.drawString("Not Balanced Tree",20,330);
+            l.drawString("Not Perfect Tree",20,360);
+            l.drawString("Not Degenerate Tree",20,390);
+            
             System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
             if(iter.getLow() == null && iter.getHigh() == null && direction != "inviz"){ //BASE 1
                 g.setColor(yellow);
