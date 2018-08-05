@@ -387,8 +387,10 @@ public class BinarySearchTreeWindow extends JFrame{
         private void PaintTree(Graphics2D g, Graphics2D l, Node iter, int maxDepth, String direction){
             
             if(!t.isComplete()){
+                
+                l.setColor(Color.green);  
+                l.drawString("Not Complete Tree",20,300);   
                 l.setColor(Color.red);
-                l.drawString("Not Complete Tree",20,300);    
             }
             else{
                 l.setColor(Color.green);     

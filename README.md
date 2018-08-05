@@ -13,6 +13,6 @@ Working:
 Binary Search Tree scaling goes off screen requiring manual window increase. Will implement checker to see if tree is a complete, balanced, perfect and/or degenerate tree. Check valid inputs.
 
 # Screens
-![alt text](selection.png "Selection")
-![alt text](tree3.png "Sample family tree ")
-![alt text](binary_tree2.png "Sample binary search tree ")
+![alt text](screens/selection.png "Selection")
+![alt text](screens/tree3.png "Sample family tree ")
+![alt text](screens/binary_tree2.png "Sample binary search tree ")
