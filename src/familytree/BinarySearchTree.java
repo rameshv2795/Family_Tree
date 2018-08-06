@@ -119,8 +119,19 @@ public class BinarySearchTree extends BaseTree{
         }
     }
     
-    public Boolean isComplete(){
-        return false;
+    public Boolean isComplete(Node n, int index){
+        System.out.println("Total Nodes: " + nodesTotal);    
+        if(n == null){
+            return true;
+        }
+        else if(index >= nodesTotal){
+            System.out.println("Index: " + index);
+            return false;
+        }
+        else{
+            return (isComplete(n.getLow(), (2 * index) + 1)
+                    && isComplete(n.getHigh(), (2 * index) + 2));
+        }
     }
     public Boolean isBalanced(){
         return false;
