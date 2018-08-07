@@ -412,7 +412,7 @@ public class BinarySearchTreeWindow extends JFrame{
                 g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); // The 620 and 180 are related to the JFrame
                 g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40);
                 l.setColor(Color.black);
-                l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);
+                l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+17,((785/(maxDepth+2))*(iter.getDepth()+1))+5+23);
                 //l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+48);
                 coord.add(new XY()); //Store location of oval for mouse
                 coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180; //All this to keep track if node is clicked 
@@ -427,7 +427,7 @@ public class BinarySearchTreeWindow extends JFrame{
                     else{
                         l.setColor(Color.blue);
                     }
-                    l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+86.5));    
+                    l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+20, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+20, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+45));    
                 }  
                 depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
                 depthCopy.add(0);
@@ -449,13 +449,13 @@ public class BinarySearchTreeWindow extends JFrame{
                             g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); //max y is 785 + 5
                             g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40);
                             l.setColor(Color.black);
-                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);                            
+                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+17,((785/(maxDepth+2))*(iter.getDepth()+1))+5+21);                            
                         }
                         else if(direction == "right"){
                             g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); //max y is 785 + 5
                             g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40);
                             l.setColor(Color.black);
-                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);                            
+                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+17,((785/(maxDepth+2))*(iter.getDepth()+1))+5+21);                            
                         }                     
                         if(iter.getParent() != null){                      
                             if(direction == "right"){
@@ -464,7 +464,7 @@ public class BinarySearchTreeWindow extends JFrame{
                             else{
                                 l.setColor(Color.blue);
                             }
-                            l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+40, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+40, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+86.5));                                                         
+                            l.draw(new Line2D.Double(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+20, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, ((620/(t.getDepthTracker().get(iter.getParent().getDepth())+1))*((depthCopy.get(iter.getDepth()-1))-1))+180+20, ((785/(maxDepth+2))*(iter.getParent().getDepth()+1))+45));                                   
                         }
                         depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
                     }
