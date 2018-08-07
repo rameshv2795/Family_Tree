@@ -402,8 +402,8 @@ public class BinarySearchTreeWindow extends JFrame{
             System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
             if(iter.getLow() == null && iter.getHigh() == null && direction != "inviz"){ //BASE 1
                 g.setColor(yellow);
-                g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); // The 620 and 180 are related to the JFrame
-                g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
+                g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); // The 620 and 180 are related to the JFrame
+                g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40);
                 l.setColor(Color.black);
                 l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);
                 //l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+48);
@@ -439,14 +439,14 @@ public class BinarySearchTreeWindow extends JFrame{
                     if(i == 0){
                         g.setColor(yellow);
                         if(direction == "left"){
-                            g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
-                            g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
+                            g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); //max y is 785 + 5
+                            g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40);
                             l.setColor(Color.black);
                             l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);                            
                         }
                         else if(direction == "right"){
-                            g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80); //max y is 785 + 5
-                            g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 80, 80);
+                            g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); //max y is 785 + 5
+                            g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40);
                             l.setColor(Color.black);
                             l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);                            
                         }                     
@@ -511,7 +511,18 @@ public class BinarySearchTreeWindow extends JFrame{
                 depthCopy.add(1);
                 parentCopy.add(1);
             }
-            
+            if(!t.isComplete(t.root,0)){
+                line.setColor(Color.red);
+                line.drawString("Not Complete Tree",20,300);    
+            }
+            else{
+                line.setColor(darkGreen);     
+                line.drawString("Is Complete Tree",20,300); 
+            }
+            line.setColor(Color.red);
+            line.drawString("Not Balanced Tree",20,330);
+            line.drawString("Not Perfect Tree",20,360);
+            line.drawString("Not Degenerate Tree",20,390);            
             if(t.getRoot() != null)
                 PaintTree(oval,line,t.getRoot(),t.getMaxDepth(), "right"); //direction parameter doesn't matter ("right")
         }   
