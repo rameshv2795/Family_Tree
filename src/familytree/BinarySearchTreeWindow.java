@@ -394,8 +394,15 @@ public class BinarySearchTreeWindow extends JFrame{
                 l.setColor(darkGreen);     
                 l.drawString("Is Complete Tree",20,300); 
             }
+            if(!t.isBalanced(t.root)){
+                l.setColor(Color.red);
+                l.drawString("Not Balanced Tree",20,330);    
+            }
+            else{
+                l.setColor(darkGreen);     
+                l.drawString("Is Balanced Tree",20,330); 
+            }            
             l.setColor(Color.red);
-            l.drawString("Not Balanced Tree",20,330);
             l.drawString("Not Perfect Tree",20,360);
             l.drawString("Not Degenerate Tree",20,390);
             
@@ -519,8 +526,16 @@ public class BinarySearchTreeWindow extends JFrame{
                 line.setColor(darkGreen);     
                 line.drawString("Is Complete Tree",20,300); 
             }
+            if(!t.isBalanced(t.root)){
+                line.setColor(Color.red);
+                line.drawString("Not Balanced Tree",20,330);    
+            }
+            else{
+                line.setColor(darkGreen);     
+                line.drawString("Is Balanced Tree",20,330); 
+            }              
             line.setColor(Color.red);
-            line.drawString("Not Balanced Tree",20,330);
+            //line.drawString("Not Balanced Tree",20,330);
             line.drawString("Not Perfect Tree",20,360);
             line.drawString("Not Degenerate Tree",20,390);            
             if(t.getRoot() != null)

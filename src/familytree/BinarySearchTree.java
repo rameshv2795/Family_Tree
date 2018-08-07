@@ -118,7 +118,14 @@ public class BinarySearchTree extends BaseTree{
             printTree(n.getHigh());
         }
     }
-    
+    public int height(Node n){
+        
+        if(n == null){
+            return 0;
+        }
+        
+        return 1 + Integer.max(height(n.getLow()),height(n.getHigh()));
+    }    
     public Boolean isComplete(Node n, int index){
         System.out.println("Total Nodes: " + nodesTotal);    
         if(n == null){
@@ -133,14 +140,29 @@ public class BinarySearchTree extends BaseTree{
                     && isComplete(n.getHigh(), (2 * index) + 2));
         }
     }
-    public Boolean isBalanced(){
+    public Boolean isBalanced(Node n){
+        int r_height = 0, l_height = 0;
+        if(n == null){
+            return true;
+        }
+        
+        r_height = height(n.getHigh());
+        l_height = height(n.getLow());
+        
+        if(Math.abs(r_height - l_height) <= 1
+                && isBalanced(n.getLow())
+                && isBalanced(n.getHigh())){
+            return true;
+        }
+        
         return false;
     }    
-    public Boolean isPerfect(){
+    public Boolean isPerfect(Node n, int index){
         return false;
     }    
-    public Boolean isDegenerate(){
+    public Boolean isDegenerate(Node n, int index){
         return false;
-    }    
+    } 
+    
 }
 
