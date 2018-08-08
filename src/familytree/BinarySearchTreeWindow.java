@@ -215,32 +215,26 @@ public class BinarySearchTreeWindow extends JFrame{
         button.addActionListener(new ActionListener(){ //Action listener for button
             @Override //
             public void actionPerformed(ActionEvent event){ //Want own action preformed
-
-                if(whichButton == 1){
-                    //JOptionPane.showMessageDialog(null, "Button Already Activated. Click On A Node To Add A New Node", "Button Already Active", INFORMATION_MESSAGE);
-                }
                 resetButtons();
                 activateButton(1);
-                if(t.getRoot() == null){
-                    AddPopUp pop = new AddPopUp();
-                    JOptionPane.showConfirmDialog(null, pop.numbers, "Adding First Node", JOptionPane.OK_CANCEL_OPTION);
-
+                AddPopUp pop = new AddPopUp();
+                
+                JOptionPane.showConfirmDialog(null, pop.numbers, "Adding Node", JOptionPane.OK_CANCEL_OPTION);
+                try{
                     in_val = Integer.parseInt(pop.input_val.getText());
-                    t.addNode(t.getRoot(), in_val, null);  
-                    repaint();
-                    t.printTree(t.getRoot());
+                }
+                catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Not a valid integer", "Must be 2 digit integer", ERROR_MESSAGE);
                     return;
                 }
-                else{
-                    AddPopUp pop = new AddPopUp();
-                    JOptionPane.showConfirmDialog(null, pop.numbers, "Adding Node", JOptionPane.OK_CANCEL_OPTION);
-
-                    in_val = Integer.parseInt(pop.input_val.getText());
-                    t.addNode(t.getRoot(), in_val, null);  
-                    repaint();
-                    t.printTree(t.getRoot());
-                    return;                    
+                if(in_val > 999 || in_val <-99){
+                    JOptionPane.showMessageDialog(null, "Out of range", "Integer must be between -99 to 999", ERROR_MESSAGE);                        
+                    return;
                 }
+                t.addNode(t.getRoot(), in_val, null);  
+                repaint();
+                t.printTree(t.getRoot());
+                return;                    
             }     
         }); 
     }
