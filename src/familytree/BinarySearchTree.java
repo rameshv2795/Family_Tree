@@ -158,10 +158,20 @@ public class BinarySearchTree extends BaseTree{
         return false;
     }    
     public Boolean isPerfect(Node n, int index){
+        
         return false;
     }    
-    public Boolean isDegenerate(Node n, int index){
-        return false;
+    public Boolean isDegenerate(Node n){
+        if(n == null){
+            return true;
+        }
+        else if(n.getHigh() != null && n.getLow()!= null){
+            return false;
+        }
+        else if (n.getHigh() != null){
+            isDegenerate(n.getHigh());
+        }
+        return isDegenerate(n.getLow());
     } 
     
 }

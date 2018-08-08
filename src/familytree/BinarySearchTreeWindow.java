@@ -401,10 +401,18 @@ public class BinarySearchTreeWindow extends JFrame{
             else{
                 l.setColor(darkGreen);     
                 l.drawString("Is Balanced Tree",20,330); 
-            }            
+            }          
+            if(!t.isDegenerate(t.root)){
+                l.setColor(Color.red);
+                l.drawString("Not Degenerate Tree",20,390);   
+            }
+            else{
+                l.setColor(darkGreen);     
+                l.drawString("Is Degenerate Tree",20,390); 
+            }                      
             l.setColor(Color.red);
             l.drawString("Not Perfect Tree",20,360);
-            l.drawString("Not Degenerate Tree",20,390);
+            //l.drawString("Not Degenerate Tree",20,390);
             
             System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
             if(iter.getLow() == null && iter.getHigh() == null && direction != "inviz"){ //BASE 1
@@ -533,11 +541,19 @@ public class BinarySearchTreeWindow extends JFrame{
             else{
                 line.setColor(darkGreen);     
                 line.drawString("Is Balanced Tree",20,330); 
-            }              
+            }      
+            if(!t.isDegenerate(t.root)){
+                line.setColor(Color.red);
+                line.drawString("Not Degenerate Tree",20,390);   
+            }
+            else{
+                line.setColor(darkGreen);     
+                line.drawString("Is Degenerate Tree",20,390); 
+            }                 
             line.setColor(Color.red);
             //line.drawString("Not Balanced Tree",20,330);
             line.drawString("Not Perfect Tree",20,360);
-            line.drawString("Not Degenerate Tree",20,390);            
+           // line.drawString("Not Degenerate Tree",20,390);            
             if(t.getRoot() != null)
                 PaintTree(oval,line,t.getRoot(),t.getMaxDepth(), "right"); //direction parameter doesn't matter ("right")
         }   
