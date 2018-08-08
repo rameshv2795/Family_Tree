@@ -409,9 +409,17 @@ public class BinarySearchTreeWindow extends JFrame{
             else{
                 l.setColor(darkGreen);     
                 l.drawString("Is Degenerate Tree",20,390); 
-            }                      
+            }   
+            if(!t.isPerfect(t.root)){
+                l.setColor(Color.red);
+                l.drawString("Not Perfect Tree",20,360);   
+            }
+            else{
+                l.setColor(darkGreen);     
+                l.drawString("Is Perfect Tree",20,360);      
+            }    
             l.setColor(Color.red);
-            l.drawString("Not Perfect Tree",20,360);
+           // l.drawString("Not Perfect Tree",20,360);
             //l.drawString("Not Degenerate Tree",20,390);
             
             System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
@@ -549,10 +557,18 @@ public class BinarySearchTreeWindow extends JFrame{
             else{
                 line.setColor(darkGreen);     
                 line.drawString("Is Degenerate Tree",20,390); 
-            }                 
+            }      
+            if(!t.isPerfect(t.root)){
+                line.setColor(Color.red);
+                line.drawString("Not Perfect Tree",20,360);   
+            }
+            else{
+                line.setColor(darkGreen);     
+                line.drawString("Is Perfect Tree",20,360); 
+            }               
             line.setColor(Color.red);
             //line.drawString("Not Balanced Tree",20,330);
-            line.drawString("Not Perfect Tree",20,360);
+           // line.drawString("Not Perfect Tree",20,360);
            // line.drawString("Not Degenerate Tree",20,390);            
             if(t.getRoot() != null)
                 PaintTree(oval,line,t.getRoot(),t.getMaxDepth(), "right"); //direction parameter doesn't matter ("right")

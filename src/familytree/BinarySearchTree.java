@@ -157,9 +157,22 @@ public class BinarySearchTree extends BaseTree{
         
         return false;
     }    
-    public Boolean isPerfect(Node n, int index){
-        
-        return false;
+    public Boolean isPerfect(Node n){
+        if(n == null){
+            return true;
+        }
+        else if(n.getHigh() != null && n.getLow() != null){
+            return (isPerfect(n.getHigh()) && isPerfect(n.getLow()));
+        }
+        else if(n.getHigh() == null && n.getLow() == null){
+            if(n.getDepth() != maxDepth){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        return false; //only 1 child
     }    
     public Boolean isDegenerate(Node n){
         if(n == null){
