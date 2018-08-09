@@ -6,11 +6,15 @@ Family Tree using a Tree of ArrayLists. There is no upper bound for children. Ea
 
 # Status
 Completed:
-The Add, Delete, and Edit functionalities are working as intended for Family Tree. Working on saving and loading (works with scaling bug). 
-Binary Search Tree data structure working. GUI works with a few bugs.
+The Add, Delete, and Edit functionalities are working as intended for Family Tree. 
+Binary Search Tree data structure working. GUI works with a few bugs. Checker working to determine if tree is a complete, balanced, perfect and/or degenerate tree.
 
 Working:
-Binary Search Tree scaling goes off screen requiring manual window increase. Will implement checker to see if tree is a complete, balanced, perfect and/or degenerate tree. Check valid inputs.
+Working on saving and loading for Family Tree (works with scaling bug).
+Fixing scaling issues for Binary Tree. Plan to add a balance button to Binary Search Tree GUI.
+
+Bugs:
+At greater depths, left nodes face the wrong way. Scaling goes off screen requiring manual window increase. 3 digit integers are not centered properly.
 
 # Screens
 ![alt text](screens/selection.png "Selection")
