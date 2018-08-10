@@ -186,6 +186,8 @@ public class BinarySearchTree extends BaseTree{
         }
         return isDegenerate(n.getLow());
     } 
-    
+    public void balanceTree(Node r){
+        
+    }
 }
 

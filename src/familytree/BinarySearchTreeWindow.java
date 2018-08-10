@@ -56,7 +56,7 @@ public class BinarySearchTreeWindow extends JFrame{
     private JLabel label;
     private Graphics2D draw;
     private JFrame window,popUp;
-    private JButton button,button2,saveButton,loadButton,quitButton,editButton;
+    private JButton button,button2,saveButton,loadButton,quitButton,editButton, balance;
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
     private String fname,lname,pf,pl;
@@ -94,6 +94,7 @@ public class BinarySearchTreeWindow extends JFrame{
         saveButton = new JButton("Save");
         loadButton = new JButton("Load");
         quitButton = new JButton("Quit");
+        balance = new JButton("Balance");
         button.setPreferredSize(new Dimension(40, 40));
         resetButtons();
         coord = new ArrayList<XY> (0);
@@ -111,9 +112,9 @@ public class BinarySearchTreeWindow extends JFrame{
         sonS2 = new Person("Su","Kidd",2,s,2);
         sonR = new Person("Larry","Richmen",2,r,1);
         sson = new Person("Andy","West",3,sonS,1);
-        x=new Person("dsdfdd","sdf",2,s,2);
-        y=new Person("dsdfdd","sdf",2,s,2);
-        z=new Person("dsdfdd","sdf",2,s,2);
+        x = new Person("dsdfdd","sdf",2,s,2);
+        y = new Person("dsdfdd","sdf",2,s,2);
+        z = new Person("dsdfdd","sdf",2,s,2);
         
         //draw.drawString("Not Complete Tree", 0, 100);
     }
@@ -135,6 +136,7 @@ public class BinarySearchTreeWindow extends JFrame{
         loadButton.setBackground(grey);
         quitButton.setBackground(grey);
         editButton.setBackground(grey);
+        balance.setBackground(grey);
         whichButton = 0;       
     }
     
@@ -177,6 +179,7 @@ public class BinarySearchTreeWindow extends JFrame{
         editAction();
         quitAction();
         loadAction();
+        balanceAction();
         //saveAction();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Binary Search Tree");
@@ -195,15 +198,16 @@ public class BinarySearchTreeWindow extends JFrame{
         
         layout.setVerticalGroup(//setHorizontalGroup(Group group)
             layout.createSequentialGroup().addComponent(button)
-                .addComponent(editButton) .addComponent(button2)
+                .addComponent(balance) .addComponent(button2)
                 .addComponent(saveButton) 
                 .addComponent(loadButton) .addComponent(quitButton)
+                
         );
         
         layout.setHorizontalGroup(
             layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                    .addComponent(button) .addComponent(editButton) .addComponent(button2) 
+                    .addComponent(button) .addComponent(balance) .addComponent(button2) 
                     .addComponent(saveButton).addComponent(loadButton)
                     .addComponent(quitButton))
         );
@@ -302,7 +306,19 @@ public class BinarySearchTreeWindow extends JFrame{
              return;
              }           
         });
-    }        
+    }    
+    
+    private void balanceAction(){
+        
+        balance.addActionListener(new ActionListener() {
+            
+            @Override //
+             public void actionPerformed(ActionEvent event){
+                   resetButtons();
+                   t.balanceTree(t.getRoot());
+             }
+        });  
+    }     
     
     public void DrawChild(String parFir,String parLas){
         System.out.println("DRAWING CHILD");
