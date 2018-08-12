@@ -40,6 +40,7 @@ import javax.swing.Box;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -55,6 +56,7 @@ public class FamilyTreeWindow extends JFrame{
     private JLabel label;
     private Graphics2D draw;
     private JFrame window,popUp;
+    private JTextArea search_in;
     private JButton button,button2,saveButton,loadButton,quitButton,editButton;
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
@@ -73,6 +75,7 @@ public class FamilyTreeWindow extends JFrame{
         createWindow();
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         //setBounds(0,0,screenSize.width/2, screenSize.height);
+        this.add(search_in);
         setVisible(true);
     }
     
@@ -100,6 +103,12 @@ public class FamilyTreeWindow extends JFrame{
         label = new JLabel();
         design = new JPanel();
         paint = new Painting();
+        
+        /*search bar*/
+        search_in = new JTextArea("search here");
+        Dimension search_d = new Dimension(140,30);
+        search_in.setSize(search_d);
+        search_in.setLocation(20, 300);
         
         /*Test data*/
         p = new Person("Jason","Kidd",-1,null,1);
@@ -191,12 +200,12 @@ public class FamilyTreeWindow extends JFrame{
         layout.setAutoCreateGaps(true);
         
         layout.setVerticalGroup(//setHorizontalGroup(Group group)
-            layout.createSequentialGroup().addComponent(button)
-                .addComponent(editButton) .addComponent(button2)
-                .addComponent(saveButton) 
-                .addComponent(loadButton) .addComponent(quitButton)
-        );
-        
+            layout.createSequentialGroup()
+                .addComponent(button)
+                .addComponent(editButton) 
+                .addComponent(button2).addComponent(saveButton) 
+                .addComponent(loadButton).addComponent(quitButton)
+        ); 
         layout.setHorizontalGroup(
             layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
@@ -227,7 +236,6 @@ public class FamilyTreeWindow extends JFrame{
                     lname = pop.lastName.getText();
                     t.addChild(null,new Person(fname,lname,-1,null,0));
                     repaint();
-                    
                     return;
               }
             }     
@@ -254,22 +262,18 @@ public class FamilyTreeWindow extends JFrame{
              }   
         });
     }    
-    
+   
     private void quitAction(){
         
         quitButton.addActionListener(new ActionListener() {
             
             @Override //
              public void actionPerformed(ActionEvent event){
-
                    resetButtons();
                    activateButton(5);
                    System.exit(0);
-
              }
-    
         });
-    
     }    
         
     private void loadAction(){
@@ -519,8 +523,7 @@ public class FamilyTreeWindow extends JFrame{
         
         AddPopUp(){
             names.add(firstLabel);
-            names.add(firstName);
-            
+            names.add(firstName);            
             names.add(lastLabel);
             names.add(lastName);
             //.showConfirmDialog(null, p, "Family and first name : ", JOptionPane.OK_CANCEL_OPTION);
