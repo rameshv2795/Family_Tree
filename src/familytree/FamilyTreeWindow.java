@@ -60,7 +60,7 @@ public class FamilyTreeWindow extends JFrame{
     private JButton button,button2,saveButton,loadButton,quitButton,editButton, searchButton;
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
-    private String fname,lname,pf,pl;
+    private String fname,lname,pf,pl,search_input = "";
     private int maxDepth,spot,people,whichButton;
     private Person p,q,r,s,sonS,sonS2,sonR,sson,x,y,z;
     private Color lightgreen,yellow,lightOrange,grey, darkGreen, brown;
@@ -319,12 +319,11 @@ public class FamilyTreeWindow extends JFrame{
             
             @Override //
              public void actionPerformed(ActionEvent event){
-                   String search_input = "";
                    resetButtons();
                    
                    search_input = search_in.getText();
                    System.out.println(search_input);
-
+                   repaint();
              }
         });
     }     
@@ -369,7 +368,7 @@ public class FamilyTreeWindow extends JFrame{
         Person p = t.findPerson(t.getRoot(),parFir,parLas);
         AddPopUp pop = new AddPopUp(parFir,parLas);
 
-       JOptionPane.showConfirmDialog(null, pop.names, "Edit Node", JOptionPane.OK_CANCEL_OPTION);
+        JOptionPane.showConfirmDialog(null, pop.names, "Edit Node", JOptionPane.OK_CANCEL_OPTION);
 
         fname = pop.firstName.getText();
         lname = pop.lastName.getText();
@@ -404,8 +403,13 @@ public class FamilyTreeWindow extends JFrame{
         private void PaintTree(Graphics2D g, Graphics2D l, Person iter, int maxDepth,int iterCount){
 
             if(iter.getChildren().isEmpty()){ //BASE 1
-                
-                g.setColor(yellow);
+                System.out.println(search_input + "==" +iter.getFirst() );
+                if(search_input.equals(iter.getFirst()) || search_input.equals(iter.getLast())){
+                    g.setColor(Color.blue);
+                }
+                else{
+                    g.setColor(yellow);
+                }
                 g.drawOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80); // The 620 and 180 are related to the JFrame
                 g.fillOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80);
                 l.setColor(Color.black);
@@ -430,7 +434,12 @@ public class FamilyTreeWindow extends JFrame{
                 for(int i = 0; i<iter.getChildren().size(); i++){
 
                     if(i == 0){
-                        g.setColor(yellow);
+                        if(search_input.equals(iter.getFirst()) || search_input.equals(iter.getLast())){
+                            g.setColor(Color.blue);
+                        }
+                        else{
+                            g.setColor(yellow);
+                        }
                         g.drawOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80); //max y is 785 + 5
                         g.fillOval(((620/(t.getDepthTracker().get(iter.getMaxDepth())+1))*depthCopy.get(iter.getMaxDepth()))+180, ((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5, 80, 80);
                         l.setColor(Color.black);
