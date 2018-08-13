@@ -24,6 +24,7 @@ public class Person {
    private Boolean maxKids; 
    private int personDepth,rowNumber;
    private Person parent;
+   //private int id;
    
     
     Person(String first,String last,int parentDepth,Person p,int row){
@@ -32,6 +33,7 @@ public class Person {
         lastName = last;
         parent = p; 
         initPerson(parentDepth);
+       // id = i;
         
     }
     

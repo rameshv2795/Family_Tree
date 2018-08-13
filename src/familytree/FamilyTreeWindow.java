@@ -57,7 +57,7 @@ public class FamilyTreeWindow extends JFrame{
     private Graphics2D draw;
     private JFrame window,popUp;
     private JTextArea search_in;
-    private JButton button,button2,saveButton,loadButton,quitButton,editButton;
+    private JButton button,button2,saveButton,loadButton,quitButton,editButton, searchButton;
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
     private String fname,lname,pf,pl;
@@ -76,6 +76,7 @@ public class FamilyTreeWindow extends JFrame{
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         //setBounds(0,0,screenSize.width/2, screenSize.height);
         this.add(search_in);
+        this.add(searchButton);
         setVisible(true);
     }
     
@@ -107,8 +108,12 @@ public class FamilyTreeWindow extends JFrame{
         /*search bar*/
         search_in = new JTextArea("search here");
         Dimension search_d = new Dimension(140,30);
+        Dimension search_button_d = new Dimension(60,30);
         search_in.setSize(search_d);
-        search_in.setLocation(20, 300);
+        search_in.setLocation(5, 300);
+        searchButton = new JButton("Find");
+        searchButton.setSize(search_button_d);
+        searchButton.setLocation(150, 300);
         
         /*Test data*/
         p = new Person("Jason","Kidd",-1,null,1);
@@ -183,6 +188,7 @@ public class FamilyTreeWindow extends JFrame{
         editAction();
         quitAction();
         loadAction();
+        searchAction();
         //saveAction();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Family Tree");
@@ -306,6 +312,22 @@ public class FamilyTreeWindow extends JFrame{
              }           
         });
     }        
+    
+    private void searchAction(){
+        
+        searchButton.addActionListener(new ActionListener(){
+            
+            @Override //
+             public void actionPerformed(ActionEvent event){
+                   String search_input = "";
+                   resetButtons();
+                   
+                   search_input = search_in.getText();
+                   System.out.println(search_input);
+
+             }
+        });
+    }     
     
     public void DrawChild(String parFir,String parLas){
       //  System.out.println("HERE");
