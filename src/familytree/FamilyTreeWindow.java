@@ -63,7 +63,7 @@ public class FamilyTreeWindow extends JFrame{
     private String fname,lname,pf,pl,search_input = "";
     private int maxDepth,spot,people,whichButton;
     private Person p,q,r,s,sonS,sonS2,sonR,sson,x,y,z;
-    private Color lightgreen,yellow,lightOrange,grey, darkGreen, brown;
+    private Color lightgreen,yellow,lightOrange,grey, darkGreen, brown, lightBlue;
     private ArrayList<Integer> depthCopy,parentCopy;
     private ArrayList<XY> coord;
     private Font border;
@@ -90,6 +90,7 @@ public class FamilyTreeWindow extends JFrame{
         grey = new Color(224,224,224);
         darkGreen =  Color.decode("#468615");
         brown = Color.decode("#784212");
+        lightBlue = Color.decode("#85C1E9");
         people = 1;
         button = new JButton("Add Person");
         button2 = new JButton("Delete Person");
@@ -321,7 +322,7 @@ public class FamilyTreeWindow extends JFrame{
              public void actionPerformed(ActionEvent event){
                    resetButtons();
                    
-                   search_input = search_in.getText();
+                   search_input = search_in.getText().trim();
                    System.out.println(search_input);
                    repaint();
              }
@@ -344,7 +345,7 @@ public class FamilyTreeWindow extends JFrame{
             return;
         }
         
-        t.addChild(parent,new Person(fname,lname,parent.getMaxDepth(),parent,1));
+        t.addChild(parent,new Person(fname.trim(),lname.trim(),parent.getMaxDepth(),parent,1));
         repaint();
         
         return;       
@@ -404,8 +405,9 @@ public class FamilyTreeWindow extends JFrame{
 
             if(iter.getChildren().isEmpty()){ //BASE 1
                 System.out.println(search_input + "==" +iter.getFirst() );
-                if(search_input.equals(iter.getFirst()) || search_input.equals(iter.getLast())){
-                    g.setColor(Color.blue);
+                if(search_input.equals(iter.getFirst()) || search_input.equals(iter.getLast())
+                   || search_input.equals(iter.getFirst() + " " + iter.getLast())){
+                    g.setColor(lightBlue);
                 }
                 else{
                     g.setColor(yellow);
@@ -434,8 +436,9 @@ public class FamilyTreeWindow extends JFrame{
                 for(int i = 0; i<iter.getChildren().size(); i++){
 
                     if(i == 0){
-                        if(search_input.equals(iter.getFirst()) || search_input.equals(iter.getLast())){
-                            g.setColor(Color.blue);
+                        if(search_input.equals(iter.getFirst()) || search_input.equals(iter.getLast()) 
+                          || search_input.equals(iter.getFirst() + " " + iter.getLast())){
+                            g.setColor(lightBlue);
                         }
                         else{
                             g.setColor(yellow);

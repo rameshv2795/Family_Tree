@@ -29,8 +29,8 @@ public class Person {
     
     Person(String first,String last,int parentDepth,Person p,int row){
         rowNumber = row;
-        firstName = first;
-        lastName = last;
+        firstName = first.trim();
+        lastName = last.trim();
         parent = p; 
         initPerson(parentDepth);
        // id = i;

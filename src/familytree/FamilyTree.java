@@ -90,12 +90,15 @@ public class FamilyTree extends BaseTree {
         int sizeArray; //Not needed
        
         peopleNumber++;
-        
+                
         if(root == null){ //adding very first node
             root = child;
             maxDepth++; //-1 + 1 = 0
             depthTracker.add(1);
-        }    
+        }  
+        else if(this.findPerson(root, child.getFirst(), child.getLast()) != null){
+            return;
+        }
         else{
             parent.getChildren().add(child); //adds child under parent
             if(maxDepth < child.getMaxDepth()){
