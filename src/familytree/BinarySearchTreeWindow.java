@@ -186,7 +186,6 @@ public class BinarySearchTreeWindow extends JFrame{
         getContentPane().add(label, BorderLayout.CENTER);
         setSize(800, 800);
         setLocationRelativeTo(null);
-        addMouseListener(new MouseClick());
     }
    
     private void createButton(){ //GROUPLAYOUT MANAGER
@@ -319,30 +318,7 @@ public class BinarySearchTreeWindow extends JFrame{
              }
         });  
     }     
-    
-    public void DrawChild(String parFir,String parLas){
-        System.out.println("DRAWING CHILD");
-      //  System.out.println("HERE");
-      /*  Person parent = t.findNode(t.getRoot(),parFir,parLas);
-        AddPopUp pop = new AddPopUp();
-                     //JOptionPane.showInputDialog(pop.names);
-                    // add(pop.names);
-        JOptionPane.showConfirmDialog(null, pop.names, "Adding Child", JOptionPane.OK_CANCEL_OPTION);
-
-        fname = pop.firstName.getText();
-        lname = pop.lastName.getText();
         
-        if(t.findPerson(t.getRoot(), fname, lname) != null){ //Check if Person already exists
-            JOptionPane.showMessageDialog(null, "Person Already Exists", "Duplicate Person", ERROR_MESSAGE);
-            return;
-        }
-        
-        t.addChild(parent,new Person(fname,lname,parent.getMaxDepth(),parent,1));
-        repaint();
-        */
-        return;       
-    }
-    
     public void DrawChildDelete(String parFir,String parLas){
 
       /*  Person p = t.findPerson(t.getRoot(),parFir,parLas);
@@ -356,27 +332,6 @@ public class BinarySearchTreeWindow extends JFrame{
         return;         
     }
     
-    public void DrawChildEdit(String parFir,String parLas){
-/*
-        Person p = t.findPerson(t.getRoot(),parFir,parLas);
-        AddPopUp pop = new AddPopUp(parFir,parLas);
-
-       JOptionPane.showConfirmDialog(null, pop.names, "Edit Node", JOptionPane.OK_CANCEL_OPTION);
-
-        fname = pop.firstName.getText();
-        lname = pop.lastName.getText();
-        
-        if(t.findPerson(t.getRoot(), fname, lname) != null){ //Check if Person already exists
-            JOptionPane.showMessageDialog(null, "Person Already Exists", "Duplicate Person", ERROR_MESSAGE);
-            return;
-        }       
-        
-        t.editPerson(p, fname, lname);
-        
-        repaint();*/
-        return;       
-    }    
-
     private class Painting extends JPanel {
 
         Painting(){
@@ -585,62 +540,6 @@ public class BinarySearchTreeWindow extends JFrame{
         }   
     }
 
-    public class MouseClick extends MouseAdapter{
-        
-        int x,y;
-        
-        @Override
-        public void mouseClicked(MouseEvent me){
-            x = me.getX();
-            y = me.getY();
-            
-            if(buttonPressed || button2Pressed || editPressed){ //so you can't add while another button active
-                clickPerson();
-            }
-        }
-        
-        public void clickPerson(){
-            Boolean next = false;
-            
-            for(int i = 0; i < coord.size(); i++){
-                if(coord.get(i).xClick == x && coord.get(i).yClick == x ){
-                    if(buttonPressed){
-                        //DrawChild(coord.get(i).first,coord.get(i).last);
-                    }    
-                    else if(button2Pressed)
-                        DrawChildDelete(coord.get(i).first,coord.get(i).last);
-                    else if(editPressed)
-                        DrawChildEdit(coord.get(i).first,coord.get(i).last);
-                    return;
-                }
-                
-                for(int j = 0; j < 30; j++){
-                    
-                    if(coord.get(i).xClick  +47 + j == x || coord.get(i).xClick + 47 - j == x  ){
-                        next = true;
-                    }
-                    
-                    if(next == true){
-                        for(int k = 0; k < 30; k++){
-                            if(coord.get(i).yClick  +69+ k == y || coord.get(i).yClick  +69 - k == y  ){
-                                if(buttonPressed)
-                                    DrawChild(coord.get(i).first,coord.get(i).last);
-                                else if(button2Pressed)
-                                    DrawChildDelete(coord.get(i).first,coord.get(i).last);   
-                                else if(editPressed)
-                                    DrawChildEdit(coord.get(i).first,coord.get(i).last);    
-                                return;
-                            }
-                        }
-                        next = false;
-                    }   
-                }
-            }
-                for (int z =0; z < coord.size(); z++){
-               // System.out.println("<"+(coord.get(z).xClick+47) + "," + (coord.get(z).yClick+69)+">");
-                }    
-        }     
-    }
     public class XY{
         int xClick, yClick;
         String first,last;
@@ -661,28 +560,5 @@ public class BinarySearchTreeWindow extends JFrame{
             numbers.add(input_val);
             this.input_val.setText(f);
         }        
-    }
-       public class FindPersonPop{
-        
-        JPanel names = new JPanel();
-        JTextField parentfName = new JTextField(10);
-        JTextField parentlName = new JTextField(10);
-        JTextField firstName = new JTextField(10);
-        JTextField lastName = new JTextField(10);
-        JLabel parentfLabel = new JLabel("Parent First Name");
-        JLabel parentlLabel = new JLabel("Parent Last Name");
-        JLabel firstLabel = new JLabel("First Name");
-        JLabel lastLabel = new JLabel("Last Name");
-        
-        FindPersonPop(){
-            names.add(parentfLabel);
-            names.add(parentfName);
-            names.add(parentlLabel);
-            names.add(parentlName);
-            names.add(firstLabel);
-            names.add(firstName);
-            names.add(lastLabel);
-            names.add(lastName);
-        }       
-    }        
+    }      
 }    
