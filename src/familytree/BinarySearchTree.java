@@ -108,6 +108,14 @@ public class BinarySearchTree extends BaseTree{
         return root;
     }
     
+    @Override
+    public void clearTree(){
+        root = null;
+        depthTracker = new ArrayList<Integer> (0);
+        nodesTotal = 0;
+        maxDepth = -1;
+    }
+    
     public void printTree(Node n){
         if(n == null){
             return;

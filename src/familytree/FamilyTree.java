@@ -229,4 +229,8 @@ public class FamilyTree extends BaseTree {
     public void saveTree(){
         
     }   
+    @Override
+    public void clearTree(){
+        root = null;
+    }    
 }

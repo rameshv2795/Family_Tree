@@ -56,7 +56,7 @@ public class BinarySearchTreeWindow extends JFrame{
     private JLabel label;
     private Graphics2D draw;
     private JFrame window,popUp;
-    private JButton button,button2,saveButton,loadButton,quitButton,editButton, balance;
+    private JButton button,button2,saveButton,loadButton,quitButton,editButton, balance, clearButton;
     private Boolean buttonPressed,button2Pressed,savePressed,loadPressed,quitPressed,editPressed;
     private JOptionPane j;
     private String fname,lname,pf,pl;
@@ -94,6 +94,7 @@ public class BinarySearchTreeWindow extends JFrame{
         saveButton = new JButton("Save");
         loadButton = new JButton("Load");
         quitButton = new JButton("Quit");
+        clearButton = new JButton("Clear");
         balance = new JButton("Balance");
         button.setPreferredSize(new Dimension(40, 40));
         resetButtons();
@@ -137,6 +138,7 @@ public class BinarySearchTreeWindow extends JFrame{
         quitButton.setBackground(grey);
         editButton.setBackground(grey);
         balance.setBackground(grey);
+        clearButton.setBackground(grey);
         whichButton = 0;       
     }
     
@@ -180,6 +182,7 @@ public class BinarySearchTreeWindow extends JFrame{
         quitAction();
         loadAction();
         balanceAction();
+        clearAction();
         //saveAction();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Binary Search Tree");
@@ -198,7 +201,7 @@ public class BinarySearchTreeWindow extends JFrame{
         layout.setVerticalGroup(//setHorizontalGroup(Group group)
             layout.createSequentialGroup().addComponent(button)
                 .addComponent(balance) .addComponent(button2)
-                .addComponent(saveButton) 
+                .addComponent(clearButton) .addComponent(saveButton) 
                 .addComponent(loadButton) .addComponent(quitButton)
                 
         );
@@ -207,8 +210,8 @@ public class BinarySearchTreeWindow extends JFrame{
             layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                     .addComponent(button) .addComponent(balance) .addComponent(button2) 
-                    .addComponent(saveButton).addComponent(loadButton)
-                    .addComponent(quitButton))
+                    .addComponent(clearButton) .addComponent(saveButton)
+                    .addComponent(quitButton) .addComponent(loadButton))
         );
        repaint();
     }
@@ -262,6 +265,19 @@ public class BinarySearchTreeWindow extends JFrame{
              }   
         });
     }    
+    
+    private void clearAction(){
+        clearButton.addActionListener(new ActionListener() {
+
+             @Override //
+              public void actionPerformed(ActionEvent event){
+                  System.out.println("CLEARED");
+                  depthCopy = new ArrayList<Integer> (0);
+                  t.clearTree();
+                  repaint();
+              }
+         }); 
+    }
     
     private void quitAction(){
         
