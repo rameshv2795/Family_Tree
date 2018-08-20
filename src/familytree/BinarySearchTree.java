@@ -194,8 +194,22 @@ public class BinarySearchTree extends BaseTree{
         }
         return isDegenerate(n.getLow());
     } 
+    public ArrayList<Node> getAsArrayList(Node n, ArrayList<Node> holder){
+        if(n == null){
+            return holder;
+        }
+        else{
+            getAsArrayList(n.getLow(), holder);
+            holder.add(n);
+            getAsArrayList(n.getHigh(), holder);
+            return holder;
+        }
+    }
     public void balanceTree(Node r){
-        
+        ArrayList<Node> holder = getAsArrayList(root, new ArrayList<Node>());
+        for(int i = 0; i < holder.size(); i++ ){
+            System.out.println(holder.get(i).getVal());
+        } 
     }
 }
 
