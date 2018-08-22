@@ -205,11 +205,22 @@ public class BinarySearchTree extends BaseTree{
             return holder;
         }
     }
-    public void balanceTree(Node r){
-        ArrayList<Node> holder = getAsArrayList(root, new ArrayList<Node>());
+    public Node balanceTree(ArrayList<Node> holder, int start, int end){
+        holder = getAsArrayList(root, new ArrayList<Node>());
+        int mid = 0;
+        Node n;
         for(int i = 0; i < holder.size(); i++ ){
             System.out.println(holder.get(i).getVal());
         } 
+        
+        if(start > end){
+            return null;
+        }
+        mid = (start + end) / 2;
+        n = holder.get(mid);
+        
+        n.setLow(balanceTree(holder,start, mid -1).getVal());
+        return root;
     }
 }
 

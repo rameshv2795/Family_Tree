@@ -330,7 +330,7 @@ public class BinarySearchTreeWindow extends JFrame{
             @Override //
              public void actionPerformed(ActionEvent event){
                    resetButtons();
-                   t.balanceTree(t.getRoot());
+                  // t.balanceTree(t.getRoot());
              }
         });  
     }     
