@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * @author Vinod
  */
 public class BinarySearchTree extends BaseTree{
-    int nodesTotal, maxDepth;
-    Node root;
+    private int nodesTotal, maxDepth;
+    private Node root;
     private ArrayList<Integer> depthTracker;
         
     BinarySearchTree(){
@@ -133,7 +133,11 @@ public class BinarySearchTree extends BaseTree{
         }
         
         return 1 + Integer.max(height(n.getLow()),height(n.getHigh()));
-    }    
+    }
+    
+    public void setRoot(Node r){
+        root = r;
+    }
     public Boolean isComplete(Node n, int index){
         System.out.println("Total Nodes: " + nodesTotal);    
         if(n == null){
@@ -205,7 +209,7 @@ public class BinarySearchTree extends BaseTree{
             return holder;
         }
     }
-    public Node balanceTree(ArrayList<Node> holder, int start, int end){
+    public Node balanceTree(ArrayList<Node> holder, int start, int end, Node parent){
         holder = getAsArrayList(root, new ArrayList<Node>());
         int mid = 0;
         Node n;
@@ -218,9 +222,16 @@ public class BinarySearchTree extends BaseTree{
         }
         mid = (start + end) / 2;
         n = holder.get(mid);
-        
-        n.setLow(balanceTree(holder,start, mid -1).getVal());
-        return root;
+        if(n != null){
+            n.setParent(parent);
+        }
+        else{
+            n.setParent(null);
+            root = n;
+        }
+        n.setLow(balanceTree(holder,start, mid - 1, n).getVal());
+        n.setHigh(balanceTree(holder,start, mid + 1, n).getVal());
+        return n;
     }
 }
 

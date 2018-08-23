@@ -52,6 +52,9 @@ public class Node{
     void setHigh(int v){
         high = new Node(v, this);
     }
+    void setParent(Node p){
+        parent = p;
+    }
     Node getParent(){
         return parent;
     }
