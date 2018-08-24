@@ -19,4 +19,4 @@ At greater depths, left nodes face the wrong way. Scaling goes off screen requir
 # Screens
 ![alt text](screens/selection.png "Selection")
 ![alt text](screens/binary_search_tree.png "Sample binary search tree ")
-![alt text](screens/tree3.png "Sample family tree ")
+![alt text](screens/tree4.png "Sample family tree ")
