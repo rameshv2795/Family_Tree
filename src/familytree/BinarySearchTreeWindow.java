@@ -331,7 +331,7 @@ public class BinarySearchTreeWindow extends JFrame{
              public void actionPerformed(ActionEvent event){
                    resetButtons();
                    ArrayList<Node> inorder = new ArrayList<Node>();
-                   t.balanceTree(t.getAsArrayList(t.getRoot(), inorder),0, t.nodesCount-1, null);
+                   t.balanceTree(t.getAsArrayList(t.getRoot(), inorder),0, t.nodesCount-1, null, true);
                   // t.setRoot(inorder.get());
                    repaint();
              }

@@ -209,7 +209,7 @@ public class BinarySearchTree extends BaseTree{
             return holder;
         }
     }
-    public Node balanceTree(ArrayList<Node> holder, int start, int end, Node parent){
+    public Node balanceTree(ArrayList<Node> holder, int start, int end, Node parent, Boolean isRoot){
         holder = getAsArrayList(root, new ArrayList<Node>());
         int mid = 0;
         Node n;
@@ -222,15 +222,15 @@ public class BinarySearchTree extends BaseTree{
         }
         mid = (start + end) / 2;
         n = holder.get(mid);
-        if(n != null){
+        if(n != null && !isRoot){
             n.setParent(parent);
         }
-        else{
+        else if(n != null){
             n.setParent(null);
             root = n;
         }
-        n.setLow(balanceTree(holder,start, mid - 1, n).getVal());
-        n.setHigh(balanceTree(holder,start, mid + 1, n).getVal());
+        n.setLow(balanceTree(holder,start, mid - 1, n, false).getVal());
+        n.setHigh(balanceTree(holder,start, mid + 1, n, false).getVal());
         return n;
     }
 }
