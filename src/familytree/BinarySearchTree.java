@@ -45,23 +45,25 @@ public class BinarySearchTree extends BaseTree{
     public int getMaxDepth(){
         return maxDepth;
     }     
+    public int getNodesTotal(){
+        return nodesTotal;
+    }
            
     public void addNode(Node r, int val, Node par){
-        System.out.println("Adding: " + val);
+        //System.out.println("Adding: " + val);
         int wide_count = 1;
         if(root == null){
-            System.out.println("IS ROOT");
+            //System.out.println("IS ROOT");
             root = new Node(val, null);
             nodesTotal++;
             maxDepth++; //-1 + 1 = 0
-            depthTracker.add(1);     
-            
+            depthTracker.add(1);                 
             return;
         }
         else if(r.getVal() >= val){
             
             if(r.getLow() != null){
-                System.out.println("Lower");
+                //System.out.println("Lower");
                 addNode(r.getLow(), val, r);
             }
             else{         
@@ -82,7 +84,7 @@ public class BinarySearchTree extends BaseTree{
         }
         else{
             if(r.getHigh() != null){
-                System.out.println("HIGHER");
+                //System.out.println("HIGHER");
                 addNode(r.getHigh(), val, r);
             }
             else{
@@ -139,12 +141,12 @@ public class BinarySearchTree extends BaseTree{
         root = r;
     }
     public Boolean isComplete(Node n, int index){
-        System.out.println("Total Nodes: " + nodesTotal);    
+       // System.out.println("Total Nodes: " + nodesTotal);    
         if(n == null){
             return true;
         }
         else if(index >= nodesTotal){
-            System.out.println("Index: " + index);
+            //System.out.println("Index: " + index);
             return false;
         }
         else{
@@ -210,12 +212,13 @@ public class BinarySearchTree extends BaseTree{
         }
     }
     public Node balanceTree(ArrayList<Node> holder, int start, int end, Node parent, Boolean isRoot){
-        holder = getAsArrayList(root, new ArrayList<Node>());
+        
         int mid = 0;
         Node n;
         for(int i = 0; i < holder.size(); i++ ){
-            System.out.println(holder.get(i).getVal());
+            printTree(root);
         } 
+        System.out.println("----------------------------");
         
         if(start > end){
             return null;
@@ -226,11 +229,13 @@ public class BinarySearchTree extends BaseTree{
             n.setParent(parent);
         }
         else if(n != null){
+            holder = getAsArrayList(root, new ArrayList<Node>());
             n.setParent(null);
             root = n;
+            System.out.println("BALANCED ROOT: " + root.getVal());
         }
-        n.setLow(balanceTree(holder,start, mid - 1, n, false).getVal());
-        n.setHigh(balanceTree(holder,start, mid + 1, n, false).getVal());
+        n.setLow(balanceTree(holder, start, mid - 1, n, false).getVal());
+        n.setHigh(balanceTree(holder, mid+1, end, n, false).getVal());
         return n;
     }
 }

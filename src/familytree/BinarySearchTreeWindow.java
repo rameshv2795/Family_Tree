@@ -246,7 +246,7 @@ public class BinarySearchTreeWindow extends JFrame{
     }
     private void button2Action(){
         
-        button2.addActionListener(new ActionListener() {
+        button2.addActionListener(new ActionListener(){
             @Override //
              public void actionPerformed(ActionEvent event){
                    resetButtons();
@@ -257,7 +257,7 @@ public class BinarySearchTreeWindow extends JFrame{
     
     private void editAction(){
         
-        editButton.addActionListener(new ActionListener() {            
+        editButton.addActionListener(new ActionListener(){            
             @Override //
              public void actionPerformed(ActionEvent event){
                    resetButtons();
@@ -267,11 +267,11 @@ public class BinarySearchTreeWindow extends JFrame{
     }    
     
     private void clearAction(){
-        clearButton.addActionListener(new ActionListener() {
+        clearButton.addActionListener(new ActionListener(){
 
              @Override //
               public void actionPerformed(ActionEvent event){
-                  System.out.println("CLEARED");
+                  //System.out.println("CLEARED");
                   depthCopy = new ArrayList<Integer> (0);
                   t.clearTree();
                   repaint();
@@ -294,7 +294,7 @@ public class BinarySearchTreeWindow extends JFrame{
         
     private void loadAction(){
         
-        loadButton.addActionListener(new ActionListener() {
+        loadButton.addActionListener(new ActionListener(){
             
             @Override //
              public void actionPerformed(ActionEvent event){
@@ -325,13 +325,13 @@ public class BinarySearchTreeWindow extends JFrame{
     
     private void balanceAction(){
         
-        balance.addActionListener(new ActionListener() {
+        balance.addActionListener(new ActionListener(){
             
             @Override //
              public void actionPerformed(ActionEvent event){
                    resetButtons();
                    ArrayList<Node> inorder = new ArrayList<Node>();
-                   t.balanceTree(t.getAsArrayList(t.getRoot(), inorder),0, t.nodesCount-1, null, true);
+                   t.balanceTree(t.getAsArrayList(t.getRoot(), inorder),0, t.getNodesTotal()-1, null, true);
                   // t.setRoot(inorder.get());
                    repaint();
              }
@@ -339,19 +339,10 @@ public class BinarySearchTreeWindow extends JFrame{
     }     
         
     public void DrawChildDelete(String parFir,String parLas){
-
-      /*  Person p = t.findPerson(t.getRoot(),parFir,parLas);
-        AddPopUp pop = new AddPopUp();
-
-        if(t.deleteChild(p) == 0){
-            JOptionPane.showMessageDialog(null, "Cannot delete a node with dependencies", "Person has children", ERROR_MESSAGE);
-            return;
-        }
-        repaint();*/
         return;         
     }
     
-    private class Painting extends JPanel {
+    private class Painting extends JPanel{
 
         Painting(){
             setBackground(lightgreen);
@@ -403,10 +394,8 @@ public class BinarySearchTreeWindow extends JFrame{
                 l.drawString("Is Perfect Tree",20,360);      
             }    
             l.setColor(Color.red);
-           // l.drawString("Not Perfect Tree",20,360);
-            //l.drawString("Not Degenerate Tree",20,390);
             
-            System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
+            //System.out.println("iter depth: "+ iter.getDepth() + " max depth: "+ t.getMaxDepth());
             if(iter.getLow() == null && iter.getHigh() == null && direction != "inviz"){ //BASE 1
                 g.setColor(yellow);
                 g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); // The 620 and 180 are related to the JFrame
@@ -435,14 +424,9 @@ public class BinarySearchTreeWindow extends JFrame{
                     PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
                     PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
                 }
-                //PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
-                //PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz"); 
-                //return;
-            }    
-                                                                                
+            }                                                                                  
             else if(direction != "inviz"){
-                for(int i = 0; i < 2; i++){
-                                                                                
+                for(int i = 0; i < 2; i++){                                                      
                     if(i == 0){
                         g.setColor(yellow);
                         if(direction == "left"){
@@ -491,8 +475,8 @@ public class BinarySearchTreeWindow extends JFrame{
                 //l.setColor(Color.black);
                 //l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getDepth()+1))+5+35);    
                 depthCopy.set(iter.getDepth(),depthCopy.get(iter.getDepth()) + 1);
-                System.out.println("Depth: "+ t.getDepthTracker().get(iter.getDepth()));
-                System.out.println("Depth Copy: " + depthCopy.get(iter.getDepth()));
+                //System.out.println("Depth: "+ t.getDepthTracker().get(iter.getDepth()));
+                //System.out.println("Depth Copy: " + depthCopy.get(iter.getDepth()));
                 if(iter.getDepth() < t.getMaxDepth() /*&& t.getDepthTracker().get(iter.getDepth() + 1) < iter.getDepth()*2*/){
                     PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
                     PaintTree(g,l,new Node(-1,iter),maxDepth,"inviz");
