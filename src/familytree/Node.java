@@ -52,6 +52,12 @@ public class Node{
     void setHigh(int v){
         high = new Node(v, this);
     }
+    void setLowNode(Node n){ //Same as setLow except pass Node instead
+        low = n;
+    }
+    void setHighNode(Node n){
+        high = n;
+    }    
     void setParent(Node p){
         parent = p;
     }

@@ -215,16 +215,20 @@ public class BinarySearchTree extends BaseTree{
         
         int mid = 0;
         Node n;
-        for(int i = 0; i < holder.size(); i++ ){
-            printTree(root);
-        } 
-        System.out.println("----------------------------");
+        //printTree(root);
+        //System.out.println("Holder Size: "+ holder.size());
+        
+        for(int i = 0; i < holder.size(); i++){
+            System.out.println(holder.get(i).getVal());
+        }
         
         if(start > end){
             return null;
         }
+        
         mid = (start + end) / 2;
         n = holder.get(mid);
+        
         if(n != null && !isRoot){
             n.setParent(parent);
         }
@@ -234,9 +238,14 @@ public class BinarySearchTree extends BaseTree{
             root = n;
             System.out.println("BALANCED ROOT: " + root.getVal());
         }
-        n.setLow(balanceTree(holder, start, mid - 1, n, false).getVal());
-        n.setHigh(balanceTree(holder, mid+1, end, n, false).getVal());
+        
+        System.out.println(" Holder: " + holder + " Start: " +start+ " mid - 1: " + (mid-1) + " n: " + n);
+        System.out.println("----------------------------");
+
+
+        n.setLowNode(balanceTree(holder, start, mid - 1, n, false));
+        n.setHighNode(balanceTree(holder, mid+1, end, n, false));
+
         return n;
     }
 }
-

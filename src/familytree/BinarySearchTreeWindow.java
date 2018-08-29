@@ -239,7 +239,7 @@ public class BinarySearchTreeWindow extends JFrame{
                 }
                 t.addNode(t.getRoot(), in_val, null);  
                 repaint();
-                t.printTree(t.getRoot());
+                //t.printTree(t.getRoot());
                 return;                    
             }     
         }); 
