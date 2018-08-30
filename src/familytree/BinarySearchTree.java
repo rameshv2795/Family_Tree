@@ -216,12 +216,7 @@ public class BinarySearchTree extends BaseTree{
         int mid = 0;
         Node n;
         //printTree(root);
-        //System.out.println("Holder Size: "+ holder.size());
-        
-        for(int i = 0; i < holder.size(); i++){
-            System.out.println(holder.get(i).getVal());
-        }
-        
+        //System.out.println("Holder Size: "+ holder.size());        
         if(start > end){
             return null;
         }
@@ -239,13 +234,34 @@ public class BinarySearchTree extends BaseTree{
             System.out.println("BALANCED ROOT: " + root.getVal());
         }
         
-        System.out.println(" Holder: " + holder + " Start: " +start+ " mid - 1: " + (mid-1) + " n: " + n);
-        System.out.println("----------------------------");
-
-
+        //System.out.println(" Holder: " + holder + " Start: " +start+ " mid - 1: " + (mid-1) + " n: " + n);
+        //System.out.println("----------------------------");
         n.setLowNode(balanceTree(holder, start, mid - 1, n, false));
         n.setHighNode(balanceTree(holder, mid+1, end, n, false));
-
+        System.out.println("----------------------------");
+        
+        /*Test code to verify balance working*/
+        try{
+        System.out.println("Curr: "+n.getVal());
+        }
+        catch(NullPointerException e){
+            System.out.println("Curr: "+"NULL");
+        }
+        try{
+        System.out.println("Low: "+n.getLow().getVal());
+        }
+        catch(NullPointerException e){
+            System.out.println("Low: "+"NULL");
+        }        
+        try{
+        System.out.println("High: "+n.getHigh().getVal());
+        }
+        catch(NullPointerException e){
+            System.out.println("High: "+"NULL");
+        }        
+        System.out.println("----------------------------");
+        /*Test code done*/
+        
         return n;
     }
 }

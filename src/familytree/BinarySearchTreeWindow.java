@@ -237,6 +237,7 @@ public class BinarySearchTreeWindow extends JFrame{
                     JOptionPane.showMessageDialog(null, "Out of range", "Integer must be between -99 to 999", ERROR_MESSAGE);                        
                     return;
                 }
+                
                 t.addNode(t.getRoot(), in_val, null);  
                 repaint();
                 //t.printTree(t.getRoot());
