@@ -225,19 +225,25 @@ public class BinarySearchTree extends BaseTree{
         n = holder.get(mid);
         
         if(n != null && !isRoot){
-            n.setParent(parent);
+            //n.setParent(parent);
+            addNode(n,n.getVal(),parent);
         }
         else if(n != null){
             holder = getAsArrayList(root, new ArrayList<Node>());
-            n.setParent(null);
-            root = n;
+            //n.setParent(null);
+            //n.;
+            clearTree();
+            addNode(n, n.getVal(), null);
+            //depthTracker = new ArrayList<Integer>();
+            //depthTracker.add(1);
+            //maxDepth = 0;
             System.out.println("BALANCED ROOT: " + root.getVal());
         }
         
         //System.out.println(" Holder: " + holder + " Start: " +start+ " mid - 1: " + (mid-1) + " n: " + n);
         //System.out.println("----------------------------");
-        n.setLowNode(balanceTree(holder, start, mid - 1, n, false));
-        n.setHighNode(balanceTree(holder, mid+1, end, n, false));
+        balanceTree(holder, start, mid - 1, n, false);
+        balanceTree(holder, mid+1, end, n, false);
         System.out.println("----------------------------");
         
         /*Test code to verify balance working*/
