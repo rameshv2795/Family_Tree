@@ -223,10 +223,12 @@ public class BinarySearchTree extends BaseTree{
         
         mid = (start + end) / 2;
         n = holder.get(mid);
+        System.out.println("Mid: = " + mid);
         
         if(n != null && !isRoot){
             //n.setParent(parent);
-            addNode(n,n.getVal(),parent);
+            
+            addNode(root,n.getVal(),parent);
         }
         else if(n != null){
             holder = getAsArrayList(root, new ArrayList<Node>());
