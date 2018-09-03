@@ -7,20 +7,20 @@ Family Tree using a Tree of ArrayLists. There is no upper bound for children. Ea
 # Status #
 ## Completed ##
 Family Tree:
-  * The Add, Delete, and Edit functionalities are working as intended
+  * The Add, Delete, and Edit functionalities are working as intended *
 Binary Search Tree: 
-  * Data structure working
-  * GUI works with a few bugs
-  * Checker working to determine if tree is a complete, balanced, perfect and/or degenerate tree
-  * Balance tree button works
+  * Data structure working *
+  * GUI works with a few bugs *
+  * Checker working to determine if tree is a complete, balanced, perfect and/or degenerate tree *
+  * Balance tree button works *
 
-## Working: ##
+## Working ##
 Family Tree:
-  * Working on saving and loading (works with scaling bug).
+  * Working on saving and loading (works with scaling bug). *
 Binary Search Tree:  
-  * Fixing scaling issues for Binary Tree.
+  * Fixing scaling issues for Binary Tree. *
 
-# Bugs: #
+# Bugs #
 At greater depths, left nodes face the wrong way. Scaling goes off screen requiring manual window increase. 3-digit integers are not centered properly. Family Tree search sometimes doesn't work.
 
 # Screens #
