@@ -116,8 +116,6 @@ public class BinarySearchTreeWindow extends JFrame{
         x = new Person("dsdfdd","sdf",2,s,2);
         y = new Person("dsdfdd","sdf",2,s,2);
         z = new Person("dsdfdd","sdf",2,s,2);
-        
-        //draw.drawString("Not Complete Tree", 0, 100);
     }
 
     public JButton getButton(){
