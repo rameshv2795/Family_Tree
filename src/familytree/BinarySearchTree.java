@@ -128,6 +128,7 @@ public class BinarySearchTree extends BaseTree{
             printTree(n.getHigh());
         }
     }
+    
     public int height(Node n){
         
         if(n == null){
@@ -211,6 +212,28 @@ public class BinarySearchTree extends BaseTree{
             return holder;
         }
     }
+    public ArrayList<Node> getPreOrder(Node n, ArrayList<Node> holder){
+        if(n == null){
+            return holder;
+        }
+        else{
+            holder.add(n);
+            getAsArrayList(n.getLow(), holder);
+            getAsArrayList(n.getHigh(), holder);
+            return holder;
+        }
+    }  
+    public ArrayList<Node> getPostOrder(Node n, ArrayList<Node> holder){
+        if(n == null){
+            return holder;
+        }
+        else{
+            getAsArrayList(n.getHigh(), holder);  
+            getAsArrayList(n.getLow(), holder);          
+            holder.add(n);
+            return holder;
+        }
+    }     
     public Node balanceTree(ArrayList<Node> holder, int start, int end, Node parent, Boolean isRoot){
         int mid = 0;
         Node n;   
