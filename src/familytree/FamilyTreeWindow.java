@@ -27,8 +27,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -228,7 +231,11 @@ public class FamilyTreeWindow extends JFrame{
         button.addActionListener(new ActionListener() { //Action listener for button
             @Override //
             public void actionPerformed(ActionEvent event){ //Want own action preformed
-
+ 
+                label.getRootPane().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+                    new ImageIcon(FamilyTree.class.getResource("img/add_icon.png")).getImage(),
+                    new Point(0,0),"add icon"));
+               
                 if(whichButton == 1){
                     JOptionPane.showMessageDialog(null, "Button already activated. Click on a node to add a new person", "Button Already Active", INFORMATION_MESSAGE);
                 }
@@ -253,6 +260,9 @@ public class FamilyTreeWindow extends JFrame{
         button2.addActionListener(new ActionListener() {
             @Override //
              public void actionPerformed(ActionEvent event){
+                label.getRootPane().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+                    new ImageIcon(FamilyTree.class.getResource("img/trash_icon.png")).getImage(),
+                    new Point(0,0),"delete icon"));                 
                    resetButtons();
                    activateButton(2);
              }
@@ -264,6 +274,9 @@ public class FamilyTreeWindow extends JFrame{
         editButton.addActionListener(new ActionListener() {            
             @Override //
              public void actionPerformed(ActionEvent event){
+                label.getRootPane().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+                    new ImageIcon(FamilyTree.class.getResource("img/edit_icon.png")).getImage(),
+                    new Point(0,0),"edit icon"));                 
                    resetButtons();
                    activateButton(6);
              }   
