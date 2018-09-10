@@ -403,9 +403,9 @@ public class BinarySearchTreeWindow extends JFrame{
                 l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+17,((785/(maxDepth+2))*(iter.getDepth()+1))+5+23);
                 //l.drawString(iter.getLast(),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+18,((785/(maxDepth+2))*(iter.getMaxDepth()+1))+5+48);
                 coord.add(new XY()); //Store location of oval for mouse
-                coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180; //All this to keep track if node is clicked 
+                coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth())) +180; //All this to keep track if node is clicked 
                 coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getDepth()+1))+5;
-                coord.get(coord.size()-1).first = Integer.toString(iter.getVal());
+                coord.get(coord.size()-1).id = iter.getVal();
                 //coord.get(coord.size()-1).last = iter.getLast();
 
                 if(iter.getParent() != null){
@@ -438,7 +438,11 @@ public class BinarySearchTreeWindow extends JFrame{
                             g.drawOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40); //max y is 785 + 5
                             g.fillOval(((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180, ((785/(maxDepth+2))*(iter.getDepth()+1))+5, 40, 40);
                             l.setColor(Color.black);
-                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+17,((785/(maxDepth+2))*(iter.getDepth()+1))+5+21);                            
+                            l.drawString(Integer.toString(iter.getVal()),((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180+17,((785/(maxDepth+2))*(iter.getDepth()+1))+5+21);     
+                            coord.add(new XY()); //Store location of oval for mouse
+                            coord.get(coord.size()-1).xClick = ((620/(t.getDepthTracker().get(iter.getDepth())+1))*depthCopy.get(iter.getDepth()))+180; //All this to keep track if node is clicked 
+                            coord.get(coord.size()-1).yClick = ((785/(maxDepth+2))*(iter.getDepth()+1))+5;
+                            coord.get(coord.size()-1).id = iter.getVal();
                         }                     
                         if(iter.getParent() != null){                      
                             if(direction == "right"){
@@ -544,7 +548,11 @@ public class BinarySearchTreeWindow extends JFrame{
 
     public class XY{
         int xClick, yClick;
-        String first,last;
+        int id;
+        
+        public int getId(){
+            return id;
+        }
     }    
     
     public class AddPopUp{
